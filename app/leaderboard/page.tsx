@@ -1,4 +1,4 @@
-import Leaderboard from '@/components/Leaderboard/Leaderboard'
+import Leaderboard from '@/components/leaderboard/Leaderboard'
 import React from 'react'
 
 export default function page() {
