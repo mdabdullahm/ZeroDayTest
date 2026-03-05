@@ -15,7 +15,7 @@ const Navbar = () => {
     { name: 'Policy', href: '/policy' },
     { name: 'WhyZerodayTest', href: '/hoyzerotest' },
     // { name: 'Academy', href: '/academy' },
-    { name: 'Leaderboard', href: '#' },
+    { name: 'Leaderboard', href: '/leaderboard' },
     { name: 'Services', href: '/services' },
     { name: 'FAQ', href: '/faq' },
     { name: 'Contact Us', href: '/contact' },
