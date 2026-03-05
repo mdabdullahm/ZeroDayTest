@@ -1,147 +1,130 @@
 "use client";
-import { motion } from 'framer-motion';
-import { Quote, Star, MessageSquare, Terminal, ShieldCheck } from 'lucide-react';
 
-const reviews = [
-  {
-    alias: "Ghost_Kernel",
-    role: "Security Lead",
-    text: "The ZeroDay Test reports are amazing. They've caught some incredible bugs!",
-    rating: 5,
-    status: "ENCRYPTED"
-  },
-  {
-    alias: "Binary_Surfer",
-    role: "Bug Hunter",
-    text: "Their academy modules are just level up! The Linux course turned my career around.",
-    rating: 5,
-    status: "DECODED"
-  },
-  {
-    alias: "Alpha_Seeker",
-    role: "DevSecOps",
-    text: "The automated scanners are fast and the results are precise. Highly recommended!",
-    rating: 5,
-    status: "VERIFIED"
-  },
-  {
-    alias: "Root_Bypass",
-    role: "CTF Player",
-    text: "Best training environment for advanced exploits. ZeroDay is the real deal.",
-    rating: 4,
-    status: "AUTHORIZED"
-  },
-  {
-    alias: "Cipher_Null",
-    role: "CTO",
-    text: "Our payment gateway is now much more secure than before for their hardening services.",
-    rating: 5,
-    status: "SECURE"
-  },
-  {
-    alias: "Kernel_Panic",
-    role: "Researcher",
-    text: "Deep analysis and detailed documentation. A must-have for every security team.",
-    rating: 5,
-    status: "VERIFIED"
-  }
-];
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Star, Terminal, ShieldCheck } from 'lucide-react';
+
+// ১. ব্যাকএন্ড ডকুমেন্টেশন অনুযায়ী ইন্টারফেস
+interface Review {
+  id: string;
+  content: string;
+  rating: number | null;
+  createdAt: string;
+  organization: {
+    name: string;
+    logo: string | null;
+  };
+}
 
 const Testimonials = () => {
-  const duplicatedReviews = [...reviews, ...reviews];
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // ২. সরাসরি আপনার ড্যাশবোর্ড এপিআই থেকে ডেটা ফেচ করা
+  useEffect(() => {
+    const fetchPublicReviews = async () => {
+      try {
+        // এই লিঙ্কটি সরাসরি ড্যাশবোর্ড থেকে রিভিউ নিয়ে আসবে
+        const response = await fetch('https://zero-day-test-nine.vercel.app/api/public/reviews');
+        const data = await response.json();
+
+        if (data && Array.isArray(data.reviews)) {
+          setReviews(data.reviews);
+        }
+      } catch (error) {
+        console.error("API Uplink Error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPublicReviews();
+  }, []);
+
+  // ৩. এনিমেশনের জন্য ডাটা ডাবল করা (যদি ডাটা থাকে)
+  const duplicatedReviews = reviews.length > 0 ? [...reviews, ...reviews] : [];
+
+  if (loading) return (
+    <div className="py-20 text-center font-mono text-green-500 animate-pulse">
+      &gt; INFILTRATING_REVIEW_DATABASE...
+    </div>
+  );
+
+  // যদি কোনো অ্যাপ্রুভড রিভিউ না থাকে তবে এই সেকশন দেখাবে না
+  if (reviews.length === 0) return null;
 
   return (
-    <section className="relative bg-black py-10 lg:py-15 overflow-hidden border-t border-green-500/5 mt-[-1px]">
-      
-      {/* Background Decor - Matrix Grid */}
+    <section className="relative bg-black py-16 lg:py-24 overflow-hidden border-t border-green-500/5 mt-[-1px]">
+      {/* Background Decor */}
       <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" 
            style={{ backgroundImage: 'linear-gradient(#10b981 1px, transparent 1px), linear-gradient(90deg, #10b981 1px, transparent 1px)', backgroundSize: '45px 45px' }}>
       </div>
 
       <div className="relative z-10">
-        
-        {/* Header */}
         <div className="max-w-[1440px] mx-auto px-6 lg:px-20 text-center mb-16">
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="flex items-center justify-center gap-2 text-green-500 font-mono text-[10px] mb-4 uppercase tracking-[0.4em]"
-          >
-            <MessageSquare size={14} /> [ Intercepting_Live_Feedback ]
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="flex items-center justify-center gap-2 text-green-500 font-mono text-[10px] mb-4 uppercase tracking-[0.4em]">
+            <ShieldCheck size={14} /> [ Verified_Client_Logs ]
           </motion.div>
-          <h2 className="text-3xl lg:text-5xl font-bold text-white">
-            System <span className="text-green-500">Reviews</span>
+          <h2 className="text-4xl lg:text-7xl font-bold text-white uppercase tracking-tighter">
+            System <span className="text-green-500 font-mono italic">Reviews</span>
           </h2>
         </div>
 
-        {/* --- INFINITE SCROLLING MARQUEE --- */}
+        {/* INFINITE MARQUEE */}
         <div className="relative flex overflow-hidden group">
           <motion.div 
             className="flex whitespace-nowrap gap-6"
-            animate={{ 
-              x: ["0%", "-50%"] 
-            }}
-            transition={{ 
-              ease: "linear", 
-              duration: 25, 
-              repeat: Infinity 
-            }}
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ ease: "linear", duration: 30, repeat: Infinity }}
           >
             {duplicatedReviews.map((review, index) => (
               <div
-                key={index}
-                className="w-[300px] md:w-[400px] flex-shrink-0 bg-zinc-950/40 border border-white/5 rounded-3xl p-6 md:p-8 hover:border-green-500/20 transition-all duration-300"
+                key={`${review.id}-${index}`}
+                className="w-[350px] md:w-[450px] flex-shrink-0 bg-zinc-950/40 border border-white/5 rounded-[2.5rem] p-8 hover:border-green-500/30 transition-all duration-500"
               >
-                {/* Card Header Style */}
                 <div className="flex justify-between items-center mb-6 text-[9px] font-mono text-gray-600 border-b border-white/5 pb-4">
                   <span className="flex items-center gap-1 uppercase">
-                     <Terminal size={10} /> {review.status}
+                     <Terminal size={10} /> STATUS: APPROVED
                   </span>
-                  <span className="text-green-900">NODE_0{index + 1}</span>
+                  <span className="text-green-900 font-bold uppercase">
+                    {new Date(review.createdAt).toLocaleDateString()}
+                  </span>
                 </div>
 
-                {/* Content */}
                 <div className="relative">
                   <div className="flex gap-1 mb-4">
                      {[...Array(5)].map((_, i) => (
-                       <Star 
-                         key={i} 
-                         size={12} 
-                         className={`${i < review.rating ? 'text-green-500 fill-green-500' : 'text-gray-800'}`} 
-                       />
+                       <Star key={i} size={12} className={`${i < (review.rating || 0) ? 'text-green-500 fill-green-500' : 'text-gray-800'}`} />
                      ))}
                   </div>
 
-                  <p className="text-gray-400 text-xs md:text-sm leading-relaxed mb-8 italic whitespace-normal">
-                    "{review.text}"
+                  <p className="text-gray-400 text-sm leading-relaxed mb-8 italic whitespace-normal font-light">
+                    "{review.content}"
                   </p>
 
-                  {/* User Profile */}
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center border border-green-500/20">
-                      <span className="text-green-500 font-black text-sm uppercase">
-                        {review.alias.charAt(0)}
-                      </span>
+                  <div className="flex items-center gap-4 border-t border-white/5 pt-6">
+                    <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-white/10 flex items-center justify-center overflow-hidden">
+                      {review.organization.logo ? (
+                        <img src={review.organization.logo} alt={review.organization.name} className="w-full h-full object-cover" />
+                      ) : (
+                        <span className="text-green-500 font-black text-lg">{review.organization.name.charAt(0)}</span>
+                      )}
                     </div>
                     <div>
-                      <h4 className="text-white font-bold text-sm">
-                        {review.alias}
+                      <h4 className="text-white font-bold text-sm uppercase tracking-tight">
+                        {review.organization.name}
                       </h4>
-                      <p className="text-[9px] text-gray-600 font-mono uppercase">
-                        {review.role}
-                      </p>
+                      <p className="text-[9px] text-green-900 font-mono uppercase tracking-[0.2em]">Verified Partner</p>
                     </div>
                   </div>
                 </div>
               </div>
             ))}
           </motion.div>
-
-          {/* মাউস নিলে যেন হালকা থেমে যায় বা স্লো হয় তার জন্য CSS (Optional) */}
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-20 pointer-events-none"></div>
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-20 pointer-events-none"></div>
+          
+          <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
         </div>
-
       </div>
     </section>
   );
