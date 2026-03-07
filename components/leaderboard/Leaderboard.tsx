@@ -56,7 +56,7 @@ const Leaderboard = () => {
 
   return (
     <section className="relative py-16 bg-black overflow-hidden border-t border-green-500/5">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-20 relative z-10">
+      <div className="max-w-full mx-auto px-6 lg:px-20 relative z-10">
         
         {/* হেডার সেকশন */}
         <div className="flex flex-col items-center text-center mb-16 relative">

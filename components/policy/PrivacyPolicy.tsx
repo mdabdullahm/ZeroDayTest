@@ -34,7 +34,7 @@ const PrivacyPolicy = () => {
            style={{ backgroundImage: 'linear-gradient(#10b981 1px, transparent 1px), linear-gradient(90deg, #10b981 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-20 relative z-10">
+      <div className="max-w-full mx-auto px-6 lg:px-20 relative z-10">
         
         <div className="flex flex-col lg:flex-row gap-16">
           

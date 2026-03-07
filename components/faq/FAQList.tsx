@@ -41,7 +41,7 @@ const FAQList = () => {
 
   return (
     <section className="relative pb-24 bg-black overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-20 relative z-10">
+      <div className="max-w-full mx-auto px-6 lg:px-20 relative z-10">
         
         <div className="grid lg:grid-cols-[1fr_2.5fr] gap-12 lg:gap-20">
           

@@ -15,7 +15,7 @@ const HoyHeader = () => {
       <div className="absolute top-0 left-[-10%] w-[600px] h-[600px] bg-green-500/10 rounded-full blur-[130px] -z-10"></div>
       <div className="absolute bottom-0 right-[-10%] w-[500px] h-[500px] bg-emerald-600/10 rounded-full blur-[130px] -z-10"></div>
 
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-20 relative z-10 w-full">
+      <div className="max-w-full mx-auto px-6 lg:px-20 relative z-10 w-full">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
           {/* Left Content: The Mission */}
