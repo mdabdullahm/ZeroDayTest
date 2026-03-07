@@ -61,7 +61,7 @@ const Testimonials = () => {
       </div>
 
       <div className="relative z-10">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-20 text-center mb-16">
+        <div className="max-w-full mx-auto px-6 lg:px-20 text-center mb-16">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="flex items-center justify-center gap-2 text-green-500 font-mono text-[10px] mb-4 uppercase tracking-[0.4em]">
             <ShieldCheck size={14} /> [ Verified_Client_Logs ]
           </motion.div>
