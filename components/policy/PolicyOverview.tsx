@@ -38,7 +38,7 @@ const PolicyOverview = () => {
       <div className="absolute top-0 left-[-10%] w-[500px] h-[500px] bg-green-500/5 rounded-full blur-[120px] -z-10"></div>
       <div className="absolute bottom-0 right-[-10%] w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px] -z-10"></div>
 
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-20 relative z-10">
+      <div className="max-w-full mx-auto px-6 lg:px-20 relative z-10">
         
         {/* Main Introduction Header */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
