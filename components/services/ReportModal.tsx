@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion"; // Variants টাইপ যুক্ত করা হয়েছে
 import {
   X, Lock, Zap, Terminal, ArrowLeft, FileText, Download, ShieldCheck, FileLock, Loader2
 } from "lucide-react";
@@ -24,18 +24,22 @@ const reports = [
   { name: "Do Not Sell or Share Info", id: "1r0xQFMDhNNSoI0U3BPQJArKfs1mELGT4", code: "DNS_PRIV_10" },
 ];
 
-// এনিমেশন ভেরিয়েন্ট
-const containerVariants = {
+// এনিমেশন ভেরিয়েন্টগুলোতে টাইপ সেট করা হয়েছে যাতে এরর না আসে
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1 } // একটির পর একটি কার্ড আসবে
+    transition: { staggerChildren: 0.1 } 
   }
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } }
+  visible: { 
+    y: 0, 
+    opacity: 1, 
+    transition: { duration: 0.5, ease: "easeOut" } 
+  }
 };
 
 const ReportModal = ({ isOpen, onClose }: ReportModalProps) => {
