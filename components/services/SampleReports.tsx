@@ -1,6 +1,9 @@
 "use client";
+
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FileText, ShieldCheck, EyeOff, Video, Lock, Zap, Terminal, Download } from 'lucide-react';
+import ReportModal from './ReportModal'; // এখানে নতুন পপআপ ফাইলটি ইমপোর্ট করা হয়েছে
 
 const deliverables = [
   {
@@ -30,8 +33,10 @@ const deliverables = [
 ];
 
 const SampleReports = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false); // পপআপ ওপেন/বন্ধ করার স্টেট
+
   return (
-    <section className="relative py-10 lg:py-15 bg-black overflow-hidden border-t border-green-500/5 mt-[-1px]">
+    <section className="relative py-16 lg:py-24 bg-black overflow-hidden border-t border-green-500/5 mt-[-1px]">
       
       {/* Background Matrix Grid */}
       <div className="absolute inset-0 z-0 opacity-10 pointer-events-none" 
@@ -58,15 +63,17 @@ const SampleReports = () => {
             </p>
           </div>
 
-          {/* Download Sample Button Visual */}
-          <button className="group relative px-8 py-4 bg-zinc-900 border border-green-500/20 rounded-2xl overflow-hidden transition-all hover:border-green-500/50 shadow-2xl">
+          {/* ডাউনলোড বাটন - যা এখন পপআপ ওপেন করবে */}
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="group relative px-8 py-4 bg-zinc-900 border border-green-500/20 rounded-2xl overflow-hidden transition-all hover:border-green-500/50 shadow-2xl active:scale-95"
+          >
              <div className="relative z-10 flex items-center gap-3">
                 <div className="p-2 bg-green-500 text-black rounded-lg group-hover:scale-110 transition-transform">
                    <Download size={18} />
                 </div>
                 <span className="text-xs font-black text-white uppercase tracking-widest">Download_Sample_Report</span>
              </div>
-             {/* Holographic light effect */}
              <div className="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-green-500/5 to-transparent group-hover:left-[100%] transition-all duration-1000"></div>
           </button>
         </div>
@@ -82,7 +89,6 @@ const SampleReports = () => {
               transition={{ delay: idx * 0.1 }}
               className="group relative p-8 bg-zinc-950/40 border border-white/5 rounded-[2rem] hover:border-green-500/30 transition-all duration-500 text-center"
             >
-              {/* Report Format Badge */}
               <div className="absolute top-4 right-6 text-[8px] font-mono text-gray-700 border border-white/5 px-2 py-0.5 rounded uppercase tracking-tighter group-hover:text-green-500 transition-colors">
                 {item.format}
               </div>
@@ -99,13 +105,12 @@ const SampleReports = () => {
                 {item.desc}
               </p>
 
-              {/* Bottom Decorative Scan Line */}
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-green-500/50 group-hover:w-[70%] transition-all duration-700"></div>
             </motion.div>
           ))}
         </div>
 
-        {/* Tactical Security Notice */}
+        {/* Security Notice Footer */}
         <div className="mt-16 p-8 bg-zinc-900/20 border border-green-900/10 rounded-[2.5rem] relative overflow-hidden">
            <div className="absolute top-0 left-0 w-1 h-full bg-green-900/20"></div>
            <div className="flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
@@ -115,7 +120,7 @@ const SampleReports = () => {
                  </div>
                  <div>
                     <h4 className="text-white font-bold uppercase text-sm tracking-widest">End-to-End Encryption</h4>
-                    <p className="text-xs text-gray-600 font-mono mt-1">REPORTS ARE SIGNED WITH RSA-4096 PRIVATE KEY</p>
+                    <p className="text-xs text-gray-600 font-mono mt-1 uppercase tracking-tighter">Reports are signed with RSA-4096 Private Key</p>
                  </div>
               </div>
               <div className="flex items-center gap-4 text-[10px] font-mono text-green-900 uppercase">
@@ -123,6 +128,12 @@ const SampleReports = () => {
               </div>
            </div>
         </div>
+
+        {/* ৪. এখানে পপআপ কম্পোনেন্টটি কল করা হয়েছে */}
+        <ReportModal 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)} 
+        />
 
       </div>
     </section>
