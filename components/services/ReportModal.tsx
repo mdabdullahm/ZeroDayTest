@@ -63,7 +63,7 @@ const ReportModal = ({ isOpen, onClose }: ReportModalProps) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100000] flex items-center justify-center p-4 md:pt-20 md:pb-10 overflow-hidden">
+        <div className="fixed inset-0 z-[100000] flex items-center justify-center p-4 pt-14 md:pt-20 md:pb-10 overflow-hidden">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={handleClose} className="absolute inset-0 bg-black/98 backdrop-blur-2xl" />
 
           <motion.div

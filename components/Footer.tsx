@@ -44,13 +44,13 @@ const Footer = () => {
     ],
     forHackers: [
       { name: "Programs", href: "/hoyzerotest" },
-      { name: "CrowdStream", href: "#" },
+      { name: "CrowdSourced", href: "/crowdsourced" },
       { name: "Bug Bounty List", href: "/services" },
       { name: "Start Hacking", href: "/academy" },
       { name: "FAQs", href: "/faq" }, 
-      { name: "Hacker Docs", href: "#" },
+      { name: "Hacker Docs", href: "/docs" },
       { name: "Academy", href: "/academy" }, 
-      { name: "Leaderboard", href: "#" }
+      { name: "Leaderboard", href: "/leaderboard" }
     ],
     company: [
       { name: "About", href: "/#about" },

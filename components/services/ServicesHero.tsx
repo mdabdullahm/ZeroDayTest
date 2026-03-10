@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import Link from 'next/link'; 
 import { ShieldCheck, Zap, Terminal, Activity, ChevronRight, Settings, Target } from 'lucide-react';
 
 const ServicesHero = () => {
@@ -37,12 +38,19 @@ const ServicesHero = () => {
             </p>
 
             <div className="flex flex-wrap gap-5">
-              <button className="px-10 py-5 bg-green-600 hover:bg-green-500 text-black font-black rounded-2xl flex items-center gap-3 transition-all shadow-[0_0_25px_rgba(34,197,94,0.4)] hover:-translate-y-1 active:scale-95 text-sm uppercase">
-                START_SECURITY_AUDIT <ChevronRight size={18} />
-              </button>
-              <button className="px-10 py-5 border border-white/10 hover:border-green-500/30 hover:bg-green-500/5 text-white font-bold rounded-2xl flex items-center gap-3 transition-all backdrop-blur-md text-sm uppercase">
-                CUSTOM_PROPOSAL <Target size={18} className="text-green-500" />
-              </button>
+              {/* ২. Start Security Audit বাটন - কন্টাক্ট পেজে যাবে */}
+              <Link href="/contact" className="w-full sm:w-auto">
+                <button className="w-full px-10 py-5 bg-green-600 hover:bg-green-500 text-black font-black rounded-2xl flex items-center justify-center gap-3 transition-all shadow-[0_0_25px_rgba(34,197,94,0.4)] hover:-translate-y-1 active:scale-95 text-sm uppercase">
+                  START_SECURITY_AUDIT <ChevronRight size={18} />
+                </button>
+              </Link>
+
+              {/* ৩. Custom Proposal বাটন - কন্টাক্ট পেজে যাবে */}
+              <Link href="/contact" className="w-full sm:w-auto">
+                <button className="w-full px-10 py-5 border border-white/10 hover:border-green-500/30 hover:bg-green-500/5 text-white font-bold rounded-2xl flex items-center justify-center gap-3 transition-all backdrop-blur-md text-sm uppercase">
+                  CUSTOM_PROPOSAL <Target size={18} className="text-green-500" />
+                </button>
+              </Link>
             </div>
 
             {/* Service Pillars */}
