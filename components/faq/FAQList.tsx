@@ -1,17 +1,18 @@
 "use client";
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Zap, ShieldCheck, Lock, Cpu, Globe, Scale, Users } from 'lucide-react';
+import { ChevronDown, Zap, ShieldCheck, Lock, Cpu, Globe, Scale, Users, Info } from 'lucide-react';
 
 const faqCategories = [
-  { id: 'general', name: 'General', icon: <Globe size={16} /> },
-  { id: 'organizations', name: 'Organizations', icon: <ShieldCheck size={16} /> },
-  { id: 'hackers', name: 'For Hackers', icon: <Users size={16} /> },
-  { id: 'legal', name: 'Legal & Trust', icon: <Scale size={16} /> }
+  { id: 'general', name: 'General faqs', icon: <Globe size={16} /> },
+  { id: 'organizations', name: 'For Organizations', icon: <ShieldCheck size={16} /> },
+  { id: 'hackers', name: 'For Ethical Hackers', icon: <Users size={16} /> },
+  { id: 'legal', name: 'Policy & Trust', icon: <Scale size={16} /> },
+  { id: 'tech', name: 'Platform & Technical', icon: <Cpu size={16} /> }
 ];
 
 const allFaqs = [
-  // --- GENERAL FAQs ---
+  // --- 1. GENERAL FAQs ---
   { 
     cat: 'general', 
     question: "What is ZeroDay Test?", 
@@ -19,12 +20,12 @@ const allFaqs = [
   },
   { 
     cat: 'general', 
-    question: "How does ZeroDay Test work?", 
+    question: "How does ZeroDay Test work", 
     answer: "Organizations list their assets under a defined scope. Ethical hackers test those assets within the allowed scope and report vulnerabilities responsibly through our platform." 
   },
   { 
     cat: 'general', 
-    question: "Is ZeroDay Test legal in Bangladesh?", 
+    question: " Is ZeroDay Test legal in Bangladesh", 
     answer: "Yes. ZeroDay Test operates under responsible disclosure principles and ensures that all security testing is conducted with proper authorization from participating organizations." 
   },
   { 
@@ -33,7 +34,7 @@ const allFaqs = [
     answer: "• Organizations\n• Ethical hackers\n• Security researchers\n• Startups, enterprises, fintech, SaaS companies" 
   },
 
-  // --- FOR ORGANIZATIONS ---
+  // --- 2. FOR ORGANIZATIONS ---
   { 
     cat: 'organizations', 
     question: "Why should my organization run a Bug Bounty program?", 
@@ -59,13 +60,8 @@ const allFaqs = [
     question: "Is my company data safe?", 
     answer: "Yes. All researchers must agree to strict responsible disclosure and non-disclosure policies." 
   },
-  { 
-    cat: 'organizations', 
-    question: "Can organizations face legal risk?", 
-    answer: "No — when structured properly. Running a program demonstrates proactive security practice and reduces regulatory risk." 
-  },
 
-  // --- FOR HACKERS ---
+  // --- 3. FOR ETHICAL HACKERS ---
   { 
     cat: 'hackers', 
     question: "How do I become a researcher on ZeroDay Test?", 
@@ -83,41 +79,107 @@ const allFaqs = [
   },
   { 
     cat: 'hackers', 
-    question: "What if two researchers report the same bug?", 
+    question: "What if two researchers report the same vulnerability?", 
     answer: "Bounty is awarded to the first valid and reproducible submission." 
   },
   { 
     cat: 'hackers', 
-    question: "Can foreign researchers participate?", 
-    answer: "Yes, but they must comply with platform rules and jurisdictional requirements. Cross-border payment rules may apply." 
+    question: "What happens if someone discloses a vulnerability publicly before policy timeline?", 
+    answer: "This may result in account suspension or permanent ban depending on severity of policy violation." 
+  },
+  // --- 4. LEGAL & TRUST ---
+  { 
+    cat: 'legal', 
+    question: "What is Responsible Disclosure?", 
+    answer: "Researchers must privately report vulnerabilities and allow organizations reasonable time (e.g., 90 days) to fix before public disclosure." 
+  },
+  { 
+    cat: 'legal', 
+    question: "Does ZeroDay Test provide legal protection to researchers?", 
+    answer: "Yes, researchers operating within defined scope and platform rules are protected under our Safe Harbor policy." 
+  },
+  { 
+    cat: 'legal', 
+    question: "Can organizations run private programs?", 
+    answer: "Yes. We support both public and private bug bounty programs." 
+  },
+  { 
+    cat: 'legal', 
+    question: "Is there a subscription fee for organizations?", 
+    answer: "Yes. Pricing depends on program type, asset size, and support level." 
   },
 
-  // --- LEGAL & TRUST ---
+  // --- 5. TECH & PLATFORM ---
   { 
-    cat: 'legal', 
+    cat: 'tech', 
+    question: "Does ZeroDay Test use AI?", 
+    answer: "Yes. AI-assisted triage helps detect duplicate reports, validate submissions, and improve efficiency." 
+  },
+  { 
+    cat: 'tech', 
+    question: "Is bug bounty legal in Bangladesh?", 
+    answer: "•Yes — when conducted with proper authorization\n• Under Bangladesh law, unauthorized access to computer systems is punishable (ICT Act 2006 & Digital Security Act 2018). However, security testing becomes legal when:\n• The organization gives explicit written authorization\n• Testing is done strictly within defined scope\n• Responsible disclosure policy is followed\n• ZeroDay Test ensures all programs operate under documented authorization agreements." 
+  },
+  { 
+    cat: 'tech', 
+    question: "How does ZeroDay Test ensure compliance with Bangladeshi law?", 
+    answer: "•We ensure:\n• Written authorization from participating organizations\n• Clearly defined testing scope\n• Safe Harbor protection for in-scope testing\n• Mandatory acceptance of platform Terms & Responsible Disclosure Policy\n• Logging and documentation of all activities• This reduces legal ambiguity for both researchers and organizations" 
+  },
+  { 
+    cat: 'tech', 
+    question: "What laws are relevant to cybersecurity testing in Bangladesh?", 
+    answer: "•Key legal frameworks include:\n• ICT Act 2006\n• Digital Security Act 2018\n• Penal Code (in cases of fraud or data misuse) •Unauthorized system access, data theft, or service disruption can be criminal offenses if done without permission." 
+  },
+  { 
+    cat: 'tech', 
     question: "What is Safe Harbor Policy?", 
-    answer: "Safe Harbor means if a researcher tests only within scope, does not exploit beyond PoC, and follows disclosure timelines, ZeroDay Test and the client will not initiate legal action." 
+    answer: "•Safe Harbor means:• If a researcher:\n• Tests only within allowed scope\n• Does not exploit beyond proof-of-concept\n• Does not access or leak personal data\n• Follows responsible disclosure timelines Then ZeroDay Test and the participating organization will not initiate legal action. This protection only applies when all rules are followed." 
   },
   { 
-    cat: 'legal', 
-    question: "What laws are relevant in Bangladesh?", 
-    answer: "Key legal frameworks include: \n• ICT Act 2006 \n• Digital Security Act 2018 \n• Penal Code (in cases of fraud)" 
+    cat: 'tech', 
+    question: "What happens if a researcher tests outside the allowed scope?", 
+    answer: "•Testing outside scope may:\n• Void Safe Harbor protection\n• Lead to account suspension\n• Result in permanent ban\n• Expose the individual to legal consequences under Bangladesh law •Strict scope adherence is mandatory." 
   },
   { 
-    cat: 'legal', 
-    question: "How do you ensure compliance with law?", 
-    answer: "We ensure written authorization from clients, clearly defined scope, and mandatory acceptance of Terms & Responsible Disclosure Policy." 
+    cat: 'tech', 
+    question: "Is public disclosure allowed?", 
+    answer: "•Public disclosure is only allowed:\n• After the agreed disclosure timeline (e.g., 90 days)\n• With written consent from the organization •Early or unauthorized public disclosure may result in account termination and possible legal action." 
   },
   { 
-    cat: 'legal', 
-    question: "What if a bug affects national infrastructure?", 
-    answer: "If a bug impacts government or critical systems, ZeroDay Test may coordinate responsible escalation with authorities while protecting researcher identity." 
+    cat: 'tech', 
+    question: "Can organizations face legal risk by running a bug bounty program?", 
+    answer: "•No — when structured properly.•Running a bug bounty program through ZeroDay Test:\n• Demonstrates proactive security practice\n• Reduces regulatory risk\n• Shows due diligence in protecting user data •However, organizations must ensure they legally own the assets listed in scope." 
   },
   { 
-    cat: 'legal', 
+    cat: 'tech', 
+    question: "Does ZeroDay Test access organization data?", 
+    answer: "•No. ZeroDay Test acts as a coordination platform. Vulnerability reports are submitted securely, and sensitive data handling is governed by confidentiality agreements." 
+  },
+  { 
+    cat: 'tech', 
+    question: "Are researchers allowed to access user data?", 
+    answer: "•No.\n• Researchers must:\n• Avoid accessing personal or sensitive data\n• Stop testing immediately if sensitive data is exposed\n• Report the issue without copying or storing data  •Data misuse is a criminal offense under Bangladeshi law." 
+  },
+  { 
+    cat: 'tech', 
+    question: "Can foreign researchers participate?", 
+    answer: "•Yes, but:\n• They must comply with platform rules\n• They must follow the organization’s jurisdictional requirements\n• Cross-border payment and compliance rules may apply" 
+  },
+  { 
+    cat: 'tech', 
     question: "Does ZeroDay Test provide legal representation?", 
-    answer: "We provide policy-based Safe Harbor protection. Individual representation is not automatic unless stated in specific agreements." 
-  }
+    answer: "ZeroDay Test provides policy-based Safe Harbor protection.However, individual legal representation is not automatically provided unless stated in specific enterprise agreements." 
+  },
+  { 
+    cat: 'tech', 
+    question: "What if a vulnerability affects national critical infrastructure?", 
+    answer: "•If a vulnerability impacts:\n• Government systems\n• Banking infrastructure\n• Critical national services• ZeroDay Test may coordinate responsible escalation with appropriate authorities while protecting researcher identity (when policy-compliant)." 
+  },
+  { 
+    cat: 'tech', 
+    question: "Is ZeroDay Test compliant with international standards?", 
+    answer: "•The platform is being designed aligned with:\n• Responsible Disclosure frameworks\n• ISO 27001 security principles\n• Global bug bounty best practices" 
+  },
 ];
 
 const FAQList = () => {
@@ -128,7 +190,7 @@ const FAQList = () => {
 
   return (
     <section className="relative pb-24 bg-black overflow-hidden border-t border-green-500/5">
-      <div className="max-w-full mx-auto px-6 lg:px-20 relative z-10">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-20 relative z-10">
         
         <div className="grid lg:grid-cols-[1fr_2.5fr] gap-12 lg:gap-20 mt-20">
           
@@ -155,7 +217,7 @@ const FAQList = () => {
               </button>
             ))}
 
-            {/* Platform Status Card */}
+            {/* Platform HUD Status */}
             <div className="mt-12 p-6 bg-zinc-900/10 border border-green-900/20 rounded-3xl hidden lg:block backdrop-blur-sm">
                <div className="flex items-center gap-3 mb-4">
                   <Cpu size={18} className="text-green-700" />
@@ -233,9 +295,14 @@ const FAQList = () => {
             
             {/* Final CTA for FAQ */}
             <div className="mt-12 p-8 bg-green-500/5 border border-green-500/10 rounded-[2rem] flex flex-col md:flex-row items-center justify-between gap-6">
-               <p className="text-gray-500 text-sm font-light">Still have technical questions regarding the platform?</p>
+               <div className="flex items-center gap-4">
+                  <div className="p-3 bg-zinc-900 rounded-xl text-green-500">
+                     <Info size={20} />
+                  </div>
+                  <p className="text-gray-500 text-sm font-light uppercase tracking-widest">Still have technical queries?</p>
+               </div>
                <button className="px-8 py-3 bg-zinc-900 border border-green-500/20 text-green-500 font-black text-[10px] rounded-xl hover:bg-green-600 hover:text-black transition-all uppercase tracking-widest shadow-xl">
-                  Contact_Support_Node
+                  Contact_Uplink_Node
                </button>
             </div>
           </div>
