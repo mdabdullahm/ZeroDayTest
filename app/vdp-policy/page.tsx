@@ -1242,7 +1242,7 @@ export default function VDPPolicyPage() {
                                             <div key={i} className="group p-5 bg-zinc-950 border border-white/5 rounded-2xl hover:border-green-500/20 transition-all">
                                                 <div className="flex items-start gap-4">
                                                     <div className={`p-2 rounded-lg ${srv.alert ? 'bg-green-500 text-black shadow-[0_0_15px_#22c55e]' : 'bg-zinc-900 text-green-500 group-hover:bg-green-500 group-hover:text-black'} transition-all`}>
-                                                        {React.cloneElement(srv.i as React.ReactElement, { size: 18 })}
+                                                        {React.cloneElement(srv.i as React.ReactElement<{ size: number }>, { size: 18 })}
                                                     </div>
                                                     <div>
                                                         <h5 className="text-white font-bold text-xs uppercase tracking-tight mb-1">{srv.t}</h5>
