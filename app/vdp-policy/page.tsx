@@ -58,7 +58,7 @@ export default function VDPPolicyPage() {
     return (
         <div className="min-h-screen bg-black text-gray-300 font-sans selection:bg-green-500 selection:text-black">
 
-            
+
 
             <div className="max-w-[1440px] mx-auto px-6 lg:px-20 relative z-10 pt-32 pb-20">
 
@@ -771,7 +771,8 @@ export default function VDPPolicyPage() {
                                                 </div>
                                                 <p className="text-[10px] font-mono text-gray-500 uppercase mb-2">{item.t}</p>
                                                 <h5 className="text-2xl font-black text-white mb-2">{item.v}</h5>
-                                                <p className="text-[11px] text-gray-600 leading-tight">{item.desc || item.d}</p>
+                                                {/* desc সরিয়ে শুধু d ব্যবহার করুন */}
+                                                <p className="text-[11px] text-gray-600 leading-tight">{item.d}</p>
                                             </div>
                                         ))}
                                     </div>
