@@ -1,7 +1,7 @@
 "use client";
 import { motion } from 'framer-motion';
 import { Lock, EyeOff, Server, ShieldCheck, Database, UserCheck } from 'lucide-react';
-import Link from 'next/link'; // লিঙ্ক ইমপোর্ট
+import Link from 'next/link'; 
 
 const PrivacyPolicy = () => {
   const policies = [
@@ -27,7 +27,13 @@ const PrivacyPolicy = () => {
       title: "No Third-party Sharing",
       desc: "None of your information is shared with third-parties or any other agencies. Your identity is top-secret to us.",
       icon: <Server size={22} />,
-      href: "/client-nda" // ওস্তাদ, এখানে আমাদের নতুন পেজের লিঙ্ক
+      href: "/client-nda" 
+    },
+    {
+      title: "Data Privacy Policy", 
+      desc: "Complete transparency on how we handle your data under Bangladesh's digital laws, ensuring your absolute anonymity.",
+      icon: <ShieldCheck size={22} />,
+      href: "/privacy-policyy" 
     }
   ];
 
