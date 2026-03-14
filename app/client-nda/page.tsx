@@ -188,32 +188,6 @@ export default function ClientNDAPage() {
                                 {/* Signature/Approval Section (Image 2 Style) */}
                                 <div className="mt-20 pt-12 border-t border-white/10">
                                     <div className="flex flex-col md:flex-row justify-between items-end gap-12">
-                                        {/* Approval Agent Section */}
-                                        <div className="space-y-6">
-
-                                            <div className="pt-4 flex justify-center">
-                                                <div className="relative h-52 w-auto rounded-md">
-
-                                                    {/* Rotating Border */}
-                                                    <div className="absolute inset-0 rounded-md p-[3px] 
-                                                        bg-[conic-gradient(#ff0000,#00ff88,#0066ff,#ff0000)] 
-                                                         animate-spin-slow">
-
-                                                    </div>
-
-                                                    {/* Image */}
-                                                    <div className="relative bg-white rounded-md p-[3px]">
-                                                        <img
-                                                            src="/client-nda.jpg"
-                                                            alt="Signature"
-                                                            className="h-52 rounded-md"
-                                                        />
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
                                         <div className="bg-green-600 p-8 rounded-[2.5rem] text-black max-w-sm shadow-[0_0_40px_rgba(34,197,94,0.3)]">
                                             <h4 className="font-black uppercase text-sm mb-4">Electronic Acceptance</h4>
                                             <p className="text-[10px] font-bold leading-relaxed mb-4">

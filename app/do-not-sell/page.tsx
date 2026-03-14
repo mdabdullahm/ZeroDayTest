@@ -201,36 +201,6 @@ export default function DoNotSellPage() {
                                     </h3>
                                     <p className="text-sm">Byte Capsule IT will update this policy as needed to comply with amendments to the Cyber Security Act 2025, Digital Security Act 2018, ICT Act 2006, or other relevant laws. All updates will be posted on the ZeroDay Test platform and communicated to users as required.</p>
                                 </div>
-
-                                {/* --- SIGNATURE SECTION (Page 2 Bottom) --- */}
-                                <div className="mt-20 pt-12 border-t border-white/10">
-                                    <div className="flex flex-col md:flex-row justify-between items-end gap-12">
-                                        <div className="space-y-6">
-                                            <div className="pt-4 flex justify-center">
-                                                <div className="relative h-52 w-auto rounded-md">
-
-                                                    {/* Rotating Border */}
-                                                    <div className="absolute inset-0 rounded-md p-[3px] 
-                                        bg-[conic-gradient(#ff0000,#00ff88,#0066ff,#ff0000)] 
-                                            animate-spin-slow">
-
-                                                    </div>
-
-                                                    {/* Image */}
-                                                    <div className="relative bg-white rounded-md p-[3px]">
-                                                        <img
-                                                            src="/client-nda.jpg"
-                                                            alt="Signature"
-                                                            className="h-52 rounded-md"
-                                                        />
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </motion.div>

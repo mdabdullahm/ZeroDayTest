@@ -1,6 +1,8 @@
 "use client";
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Lock, Server, RefreshCw, Zap, Cpu, HardDrive } from 'lucide-react';
+import AuditModal from './AuditModal';
 
 const securityFeatures = [
   {
@@ -26,6 +28,8 @@ const securityFeatures = [
 ];
 
 const DataProtection = () => {
+  const [isAuditOpen, setIsAuditOpen] = useState(false);
+
   return (
     <section className="relative bg-black py-16 lg:py-24 overflow-hidden border-t border-green-500/5 mt-[-1px]">
       
@@ -134,9 +138,18 @@ const DataProtection = () => {
                 Our security protocols <span className="text-white">ISO/IEC 27001</span> and <span className="text-white">SOC 2 Type II</span> Designed according to standards.
               </p>
            </div>
-           <button className="px-6 py-2 bg-green-600 hover:bg-green-500 text-black font-black rounded-lg text-xs transition-all uppercase">
-             Download Security Audit
-           </button>
+           <button 
+      onClick={() => setIsAuditOpen(true)}
+      className="px-6 py-2 bg-green-600 hover:bg-green-500 text-black font-black rounded-lg text-xs transition-all uppercase shadow-lg active:scale-95"
+    >
+      Download Security Audit
+    </button>
+
+    {/* মডালটি এখানে কল করুন */}
+    <AuditModal 
+      isOpen={isAuditOpen} 
+      onClose={() => setIsAuditOpen(false)} 
+    />
         </motion.div>
 
       </div>
