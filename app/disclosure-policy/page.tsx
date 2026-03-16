@@ -1,7 +1,8 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react'; // ১. useState যুক্ত করা হয়েছে
+import { motion, AnimatePresence } from 'framer-motion';
+import { useRouter } from 'next/navigation'; // ২. useRouter যুক্ত করা হয়েছে
 import {
     ShieldCheck, Bug, Scale, Gavel,
     Terminal, Lock, Zap, Trophy,
@@ -9,7 +10,8 @@ import {
     Cpu, Globe, Mail, Phone, MapPin,
     CheckCircle2, AlertCircle, Printer,
     QrCode, Handshake, Users, FileWarning,
-    Search, Target, FileSignature
+    Search, Target, FileSignature,
+    Menu, X, ArrowLeft, ChevronRight // ৩. নেভিগেশন আইকন যুক্ত
 } from 'lucide-react';
 
 const sections = [
@@ -27,17 +29,72 @@ const sections = [
 
 export default function DisclosurePolicyPage() {
     const handlePrint = () => window.print();
+    const router = useRouter(); // ৪. ব্যাক বাটনের জন্য
+    const [isMenuOpen, setIsMenuOpen] = useState(false); // ৫. মোবাইল মেনু স্টেট
 
     return (
-        <div className="min-h-screen bg-black text-gray-300 font-sans selection:bg-green-500 selection:text-black">
+        <div className="min-h-screen bg-black text-gray-300 font-sans selection:bg-green-500 selection:text-black scroll-smooth">
+            
             {/* Background Decor */}
             <div className="fixed inset-0 z-0 opacity-10 pointer-events-none"
                 style={{ backgroundImage: 'linear-gradient(#10b981 1px, transparent 1px), linear-gradient(90deg, #10b981 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
             </div>
 
-            <div className="max-w-[1440px] mx-auto px-6 lg:px-20 relative z-10 pt-32 pb-20">
+            {/* --- মোবাইল কন্ট্রোল (ব্যাক বাটন ও মেনু টগল) --- */}
+            <div className="lg:hidden fixed bottom-24 right-6 z-[100] flex flex-col gap-4">
+                <motion.button 
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => router.back()}
+                    className="w-12 h-12 bg-zinc-900 border border-white/10 text-white rounded-full flex items-center justify-center shadow-2xl backdrop-blur-md"
+                >
+                    <ArrowLeft size={20} />
+                </motion.button>
+                <motion.button 
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    className="w-14 h-14 bg-green-600 text-black rounded-full flex items-center justify-center shadow-[0_0_20px_#22c55e66]"
+                >
+                    {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                </motion.button>
+            </div>
 
-                {/* --- অফিশিয়াল লেটারহেড (Header Section) --- */}
+            {/* --- মোবাইল ড্রয়ার মেনু --- */}
+            <AnimatePresence>
+                {isMenuOpen && (
+                    <>
+                        <motion.div 
+                            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                            onClick={() => setIsMenuOpen(false)}
+                            className="lg:hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[90]"
+                        />
+                        <motion.div 
+                            initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
+                            className="lg:hidden fixed top-0 right-0 h-full w-[280px] bg-zinc-950 border-l border-green-500/20 z-[95] p-6 shadow-2xl overflow-y-auto"
+                        >
+                            <p className="text-[10px] font-mono text-green-500 uppercase tracking-widest mb-6">Disclosure_Index</p>
+                            <div className="space-y-2">
+                                {sections.map((item) => (
+                                    <a 
+                                        key={item.id} href={`#${item.id}`} 
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 text-gray-400 active:bg-green-500/10 active:text-green-500 transition-all"
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-green-800">{item.icon}</span>
+                                            <span className="text-[10px] font-bold uppercase">{item.title}</span>
+                                        </div>
+                                        <ChevronRight size={14} className="opacity-30" />
+                                    </a>
+                                ))}
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
+
+            <div className="max-w-full mx-auto px-6 lg:px-20 relative z-10 pt-32 pb-20">
+
+                {/* --- অফিশিয়াল লেটারহেড --- */}
                 <div className="mb-12 bg-white/5 border border-white/10 p-8 rounded-[2rem] backdrop-blur-md flex flex-col md:flex-row justify-between items-center gap-8">
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div className="flex items-center gap-3 mb-2">
@@ -52,8 +109,8 @@ export default function DisclosurePolicyPage() {
                         </div>
                     </div>
                     <div className="flex flex-col items-center gap-2">
-                        <div className="p-3 bg-white rounded-xl">
-                            <QrCode size={70} className="text-black" />
+                        <div className="p-3 rounded-xl">
+                            <img src="/qrcode.png" alt="" className='w-32 h-32' />
                         </div>
                         <button onClick={handlePrint} className="flex items-center gap-2 text-[10px] font-mono text-green-500 hover:text-white transition-colors uppercase tracking-widest">
                             <Printer size={12} /> PRINT_PROTOCOL
@@ -63,7 +120,7 @@ export default function DisclosurePolicyPage() {
 
                 <div className="grid lg:grid-cols-[300px_1fr] gap-16 items-start">
 
-                    {/* Sidebar Navigation */}
+                    {/* Sidebar Navigation (Desktop) */}
                     <aside className="hidden lg:block sticky top-32 space-y-2">
                         <p className="text-[10px] font-mono text-green-900 uppercase mb-4 tracking-[0.3em]">Policy_Nodes</p>
                         {sections.map((item) => (
@@ -78,8 +135,7 @@ export default function DisclosurePolicyPage() {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="bg-zinc-950/80 border border-white/5 rounded-[3rem] p-8 md:p-16 backdrop-blur-xl shadow-2xl relative overflow-hidden"
-                    >
+                        className="bg-zinc-950/80 border border-white/5 rounded-[3rem] p-8 md:p-16 backdrop-blur-xl shadow-2xl relative overflow-hidden">
                         {/* Watermark Logo */}
                         <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none">
                             <ShieldCheck size={500} className="text-green-500" />

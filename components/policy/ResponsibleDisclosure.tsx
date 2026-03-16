@@ -32,9 +32,9 @@ const ResponsibleDisclosure = () => {
                   <ShieldCheck size={24} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors">Safe Harbor</h3>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors">Zeroday Test Responsible Disclosure Policy</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-4">
-                    If you comply with this policy, we will not take any legal action against you.
+                    Zeroday Test, an asset of Byte Capsule, is committed to maintaining a safe and secure environment for our clients and security researchers (“Hunters”). 
                   </p>
                   {/* নতুন লিঙ্ক ইন্ডিকেটর */}
                   <div className="flex items-center gap-2 text-[10px] font-mono text-green-900 group-hover:text-green-500 transition-colors uppercase tracking-widest">
@@ -54,9 +54,9 @@ const ResponsibleDisclosure = () => {
                   <Bug size={24} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors">Scope of Testing</h3>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors">VulnerabilityDisclosure Program (VDP) Policy</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-4">
-                    Only *.zerodaytest.com domains and our public API are allowed for testing.
+                     This VDP provides a clear framework for Security Researcher to report vulnerabilities responsibly to organizations hosted on our platform.
                   </p>
                   {/* ছোট একটা ইঙ্গিত যা ইউজারকে ক্লিক করতে বলবে */}
                   <div className="flex items-center gap-2 text-[10px] font-mono text-green-900 group-hover:text-green-500 transition-colors uppercase tracking-widest">
@@ -78,9 +78,9 @@ const ResponsibleDisclosure = () => {
                   <AlertCircle size={24} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors">No Disruption</h3>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors">No Objection Certificate (NOC)</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-4">
-                    Damaging systems through DDoS or social engineering attacks is strictly prohibited.
+                    This Authorization for Security Testing (“Authorization” or “NOC”) is issued by the organization registering a program on Zeroday Test (“Client”).
                   </p>
                   {/* NOC লিঙ্ক ইন্ডিকেটর */}
                   <div className="flex items-center gap-2 text-[10px] font-mono text-green-900 group-hover:text-green-500 transition-colors uppercase tracking-widest">
@@ -100,9 +100,9 @@ const ResponsibleDisclosure = () => {
                 <Gift size={24} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white mb-2">Reward System</h3>
+                <h3 className="text-xl font-bold text-white mb-2">STANDARD OPERATING PROCEDURE (SOP)</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">
-                  We offer a 'Hall of Fame' and exclusive swag for valid critical reports.
+                  This Standard Operating Procedure (SOP) defines the end-to-end operational framework for ZeroDay Test — Bangladesh’s dedicated bug hunting and vulnerability disclosure platform, operated by Byte Capsule IT.
                 </p>
                 <div className="flex items-center gap-2 text-[10px] font-mono text-green-900 group-hover:text-green-500 transition-colors uppercase tracking-widest">
                     <span>&gt; VIEW</span>

@@ -101,8 +101,8 @@ export default function TermsAndConditionsPage() {
               </div>
            </div>
            <div className="flex flex-col items-center gap-3">
-              <div className="p-3 bg-white rounded-xl">
-                 <QrCode size={70} className="text-black" />
+              <div className="p-3 rounded-xl">
+                 <img src="/qrcode.png" alt="" className='w-32 h-32' />
               </div>
               <button onClick={handlePrint} className="flex items-center gap-2 text-[10px] font-mono text-green-500 hover:text-white transition-colors uppercase tracking-widest">
                  <Printer size={12} /> PRINT_FULL_TERMS
@@ -110,7 +110,6 @@ export default function TermsAndConditionsPage() {
            </div>
         </div>
 
-        {/* ওস্তাদ, এখানে items-start যোগ করা হয়েছে যাতে সাইডবার স্থির দাঁড়িয়ে থাকে */}
         <div className="grid lg:grid-cols-[300px_1fr] gap-16 items-start">
           
           {/* --- ১. ফিক্সড সাইডবার (Desktop) --- */}

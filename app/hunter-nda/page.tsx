@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState } from 'react'; // ১. useState যুক্ত করা হয়েছে
+import React, { useState } from 'react'; 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useRouter } from 'next/navigation'; // ২. useRouter যুক্ত করা হয়েছে
+import { useRouter } from 'next/navigation'; 
 import {
     FileLock, ShieldCheck, Gavel, EyeOff,
     Terminal, Lock, Fingerprint, Scale,
     Printer, Info, CheckCircle, Ban,
     QrCode, Mail, Phone, MapPin, Globe, Trophy, AlertTriangle, Briefcase,
-    Menu, X, ArrowLeft, ChevronRight // ৩. নতুন আইকন যুক্ত করা হয়েছে
+    Menu, X, ArrowLeft, ChevronRight 
 } from 'lucide-react';
 
 const sections = [
@@ -25,8 +25,8 @@ const sections = [
 
 export default function HunterNDAPage() {
     const handlePrint = () => window.print();
-    const router = useRouter(); // ৪. ব্যাক নেভিগেশনের জন্য
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // ৫. মোবাইল মেনু স্টেট
+    const router = useRouter(); 
+    const [isMenuOpen, setIsMenuOpen] = useState(false); 
 
     return (
         <div className="min-h-screen bg-black text-gray-300 font-sans selection:bg-green-500 selection:text-black scroll-smooth">
@@ -124,8 +124,8 @@ export default function HunterNDAPage() {
                             <p className="flex items-center gap-2"><Globe size={10} /> bytecapsuleit.com</p>
                         </div>
                     </div>
-                    <div className="p-3 bg-white rounded-xl">
-                        <QrCode size={70} className="text-black" />
+                    <div className="p-3 rounded-xl">
+                        <img src="/qrcode.png" alt="" className='w-32 h-32' />
                     </div>
                 </div>
 

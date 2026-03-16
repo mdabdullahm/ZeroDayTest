@@ -102,8 +102,8 @@ export default function PSPTermsPage() {
                         </div>
                     </div>
                     <div className="flex flex-col items-center gap-3">
-                        <div className="p-3 bg-white rounded-xl">
-                            <QrCode size={70} className="text-black" />
+                        <div className="p-3 rounded-xl">
+                            <img src="/qrcode.png" alt="" className='w-32 h-32' />
                         </div>
                         <button onClick={handlePrint} className="flex items-center gap-2 text-[10px] font-mono text-green-500 hover:text-white transition-colors uppercase tracking-widest">
                             <Printer size={12} /> PRINT_FINANCIAL_DOC
@@ -133,8 +133,8 @@ export default function PSPTermsPage() {
                             <div className="text-center">
                                 <p className="text-gray-500 font-mono text-xs uppercase mb-2">PSP PROTOCOL</p>
                                 <h1 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4 leading-none">
-                                    Payment Service Provider <br />
-                                    <span className="text-green-500">Terms & Conditions</span>
+                                    PAYMENT SERVICE <br />
+                                    <span className="text-green-500">PROVIDER (PSP)</span>
                                 </h1>
                                 <div className="flex flex-wrap justify-center gap-6 text-[10px] font-mono text-gray-500 uppercase tracking-widest">
                                     <p>Ref: <span className="text-white">ZeroDay Test/PSP/2026</span></p>

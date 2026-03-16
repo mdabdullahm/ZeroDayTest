@@ -20,9 +20,9 @@ import {
     Building,
     Handshake,
     Cpu,
-    Menu, // মেনু আইকন
-    X,    // ক্লোজ আইকন
-    ArrowLeft, // ব্যাক আইকন
+    Menu, 
+    X,    
+    ArrowLeft, 
     ChevronRight
 } from 'lucide-react';
 
@@ -157,8 +157,8 @@ export default function SOPPage() {
                         </div>
                     </div>
                     <div className="flex flex-col items-center gap-3">
-                        <div className="p-3 bg-white rounded-xl">
-                            <QrCode size={70} className="text-black" />
+                        <div className="p-3 rounded-xl">
+                            <img src="/qrcode.png" alt="" className='w-32 h-32' />
                         </div>
                         <button onClick={handlePrint} className="flex items-center gap-2 text-[10px] font-mono text-green-500 hover:text-white transition-colors uppercase tracking-widest">
                             <Printer size={12} /> PRINT_FULL_SOP

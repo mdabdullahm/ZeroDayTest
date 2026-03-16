@@ -110,7 +110,7 @@ export default function DoNotSellPage() {
                 style={{ backgroundImage: 'linear-gradient(#10b981 1px, transparent 1px), linear-gradient(90deg, #10b981 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
             </div>
 
-            <div className="max-w-[1440px] mx-auto px-6 lg:px-20 relative z-10 pt-32 pb-20">
+            <div className="max-w-full mx-auto px-6 lg:px-20 relative z-10 pt-32 pb-20">
 
                 {/* --- ১. অফিশিয়াল লেটারহেড --- */}
                 <div className="mb-12 bg-white/5 border border-white/10 p-8 rounded-[2rem] backdrop-blur-md flex flex-col md:flex-row justify-between items-center gap-8">
@@ -126,8 +126,8 @@ export default function DoNotSellPage() {
                             <p className="flex items-center gap-2"><Globe size={10} /> bytecapsuleit.com</p>
                         </div>
                     </div>
-                    <div className="p-3 bg-white rounded-xl">
-                        <QrCode size={70} className="text-black" />
+                    <div className="p-3 rounded-xl">
+                        <img src="/qrcode.png" alt="" className='w-32 h-32' />
                     </div>
                 </div>
 

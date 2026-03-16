@@ -129,8 +129,8 @@ export default function TrustSecurityPage() {
                             <p className="flex items-center gap-2"><Globe size={10} /> bytecapsuleit.com</p>
                         </div>
                     </div>
-                    <div className="p-3 bg-white rounded-xl">
-                        <QrCode size={70} className="text-black" />
+                    <div className="p-3 rounded-xl">
+                        <img src="/qrcode.png" alt="" className='w-32 h-32' />
                     </div>
                 </div>
 

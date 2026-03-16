@@ -6,8 +6,8 @@ import { Link as LinkIcon, ExternalLink, ShieldAlert, Globe, Activity, Zap } fro
 
 const linkPolicies = [
   {
-    title: "Payment Service Provider Terms", 
-    desc: "Our site may contain links to other research resources or third-party tools. We have no control over the content of those sites.",
+    title: "PAYMENT SERVICE PROVIDER (PSP)", 
+    desc: "At this time, all money deposits and withdrawals on the ZeroDay Test platform are processed manually by our operations team.",
     icon: <Globe size={20} />,
     href: "/psp-terms"
   },
