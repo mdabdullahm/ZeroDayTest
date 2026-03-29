@@ -57,7 +57,7 @@ const Footer = () => {
       { name: "Trust & Security", href: "/policy" },
       { name: "Career", href: "/career" },
       { name: "Blog", href: "/blog" },
-      { name: "Events", href: "#" },
+      { name: "Events", href: "/career" },
       { name: "Contact", href: "/contact" }
     ]
   };

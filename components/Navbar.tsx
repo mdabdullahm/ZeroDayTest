@@ -13,7 +13,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Policy', href: '/policy' },
-    { name: 'WhyZerodayTest', href: '/hoyzerodaytest' },
+    { name: 'WhyZerodayTest', href: '/whyzerodaytest' },
     // { name: 'Academy', href: '/academy' },
     { name: 'Leaderboard', href: '/leaderboard' },
     { name: 'Services', href: '/services' },
@@ -71,7 +71,7 @@ const Navbar = () => {
 
             {/* Desktop Login Buttons - সাইজ বাড়িয়ে text-xs (12px) করা হয়েছে */}
             <div className="hidden lg:flex items-center gap-3 shrink-0">
-              <Link href="/hacker-login">
+              <Link href="https://zt.zerodaytest.com/auth/register">
                 <motion.button 
                   whileHover={{ y: -2 }}
                   className={`flex items-center gap-2 px-5 py-2.5 text-[12px] font-black tracking-widest rounded-xl transition-all duration-300 ${getButtonStyles('/hacker-login')}`}
@@ -79,7 +79,7 @@ const Navbar = () => {
                   <Lock size={14} /> HUNTER LOGIN
                 </motion.button>
               </Link>
-              <Link href="/customer-login">
+              <Link href="https://zt.zerodaytest.com/auth/register">
                 <motion.button 
                   whileHover={{ y: -2 }}
                   className={`flex items-center gap-2 px-5 py-2.5 text-[12px] font-black tracking-widest rounded-xl transition-all duration-300 ${getButtonStyles('/customer-login')}`}
