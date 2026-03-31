@@ -18,7 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ZeroDay Test | Cybersecurity Lab",
+  title: "ZeroDay Test || Bangladesh’s First Crowdsourced Bug Bounty Platform.",
   description: "Advanced cybersecurity testing environment",
 };
 
