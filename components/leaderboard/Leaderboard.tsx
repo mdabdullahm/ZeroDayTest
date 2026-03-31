@@ -20,7 +20,7 @@ const Leaderboard = () => {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await fetch('https://zero-day-test-nine.vercel.app/api/public/leaderboard');
+        const response = await fetch('https://zt.zerodaytest.com/api/public/leaderboard');
         const data = await response.json();
         if (data && Array.isArray(data.leaders)) {
           setLeaders(data.leaders);

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { ArrowLeft, ShieldCheck, Terminal, Loader2, MapPin, DollarSign, Calendar } from 'lucide-react';
 
-const BASE_URL = "https://zero-day-test-nine.vercel.app";
+const BASE_URL = "https://zt.zerodaytest.com";
 
 export default function CareerDetailPage() {
   const params = useParams();

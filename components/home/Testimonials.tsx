@@ -25,7 +25,7 @@ const Testimonials = () => {
     const fetchPublicReviews = async () => {
       try {
         // এই লিঙ্কটি সরাসরি ড্যাশবোর্ড থেকে রিভিউ নিয়ে আসবে
-        const response = await fetch('https://zero-day-test-nine.vercel.app/api/public/reviews');
+        const response = await fetch('https://zt.zerodaytest.com/api/public/reviews');
         const data = await response.json();
 
         if (data && Array.isArray(data.reviews)) {

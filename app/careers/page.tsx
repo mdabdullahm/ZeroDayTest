@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Terminal, MapPin, Clock, DollarSign, ArrowRight, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
-const BASE_URL = "https://zero-day-test-nine.vercel.app";
+const BASE_URL = "https://zt.zerodaytest.com";
 
 export default function CareerListPage() {
   const [jobs, setJobs] = useState<any[]>([]);

@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 
 // ১. api base url
-const BASE_URL = "https://zero-day-test-nine.vercel.app";
+const BASE_URL = "https://zt.zerodaytest.com";
 
 const SecureForm = () => {
   // ২. from state management 
