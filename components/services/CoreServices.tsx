@@ -1,6 +1,7 @@
 "use client";
 import { motion } from 'framer-motion';
 import { ShieldCheck, Zap, Terminal, Database, Lock, Search, Cpu, Globe } from 'lucide-react';
+import Link from 'next/link';
 
 const coreServices = [
   {
@@ -105,9 +106,9 @@ const CoreServices = () => {
                 </div>
 
                 <div className="pt-8">
-                  <button className="flex items-center gap-3 text-xs font-black text-white hover:text-green-500 transition-all group">
+                  <Link href="/methodology" className="flex items-center gap-3 text-xs font-black text-white hover:text-green-500 transition-all group">
                     VIEW_TECHNICAL_SPEC <Zap size={16} className="text-green-900 group-hover:text-green-500 group-hover:animate-pulse" />
-                  </button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
