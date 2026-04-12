@@ -1,6 +1,7 @@
 "use client";
 import { motion } from 'framer-motion';
 import { ShieldAlert, Bug, UserCheck, Activity, Lock, FileText, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 const services = [
     {
@@ -105,10 +106,10 @@ const Services = () => {
                                     {service.description}
                                 </p>
 
-                                <div className="flex items-center gap-2 text-[10px] font-black text-green-600 cursor-pointer group/link uppercase tracking-widest">
+                                <Link href="https://www.zerodaytest.com/services" className="flex items-center gap-2 text-[10px] font-black text-green-600 cursor-pointer group/link uppercase tracking-widest">
                                     Read Protocol
                                     <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
-                                </div>
+                                </Link>
                             </div>
                         </motion.div>
                     ))}

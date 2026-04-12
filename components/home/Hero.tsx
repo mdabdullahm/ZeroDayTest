@@ -10,7 +10,7 @@ const Hero = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       const now = new Date();
-      setTime(now.toISOString().split('T')[1].split('.')[0]);
+      setTime(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }));
     }, 1000);
     return () => clearInterval(timer);
   }, []);
