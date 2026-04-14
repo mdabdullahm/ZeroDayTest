@@ -2,10 +2,28 @@
 import { motion } from 'framer-motion';
 import { Bell, History, RefreshCcw, FileClock, Rss, Terminal } from 'lucide-react';
 
+// const updateLogs = [
+//   { version: "v1.0.0", date: "FEB 2024", change: "Responsible Disclosure Bounty updated." },
+//   { version: "v1.0.0", date: "DEC 2023", change: "Privacy encryption upgraded to RSA-4096." },
+//   { version: "v1.0.0", date: "OCT 2023", change: "Cookies and Tracking Beacon policy refined." }
+// ];
+
 const updateLogs = [
-  { version: "v1.0.0", date: "FEB 2024", change: "Responsible Disclosure Bounty updated." },
-  { version: "v1.0.0", date: "DEC 2023", change: "Privacy encryption upgraded to RSA-4096." },
-  { version: "v1.0.0", date: "OCT 2023", change: "Cookies and Tracking Beacon policy refined." }
+  { 
+    version: "v1.0.0", 
+    date: "FEB 18 2026", // তারিখ পরিবর্তন হয়েছে
+    change: "Responsible Disclosure Bounty updated." 
+  },
+  { 
+    version: "v1.0.0", // ভার্সন একই থাকবে
+    date: "FEB 18 2026", // তারিখ একই থাকবে
+    change: "Privacy encryption and policies upgraded." 
+  },
+  { 
+    version: "v1.0.0", 
+    date: "FEB 18 2026", 
+    change: "Cookies and Tracking Beacon policy refined." 
+  }
 ];
 
 const PolicyUpdates = () => {
