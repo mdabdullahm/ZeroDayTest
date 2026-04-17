@@ -52,7 +52,7 @@ const ContactCTA = () => {
                         {/* Tactical Buttons with Blob Style Logic */}
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
                             {/* Primary Action Button */}
-                            <Link href="https://zerodaytest.com/docs" className="group relative px-12 py-6 bg-green-600 hover:bg-green-500 text-black font-black rounded-2xl transition-all shadow-[0_0_40px_rgba(34,197,94,0.4)] hover:shadow-[0_0_60px_rgba(34,197,94,0.6)] hover:-translate-y-2 active:scale-95 text-base uppercase tracking-widest overflow-hidden">
+                            <Link href="/docs" className="group relative px-12 py-6 bg-green-600 hover:bg-green-500 text-black font-black rounded-2xl transition-all shadow-[0_0_40px_rgba(34,197,94,0.4)] hover:shadow-[0_0_60px_rgba(34,197,94,0.6)] hover:-translate-y-2 active:scale-95 text-base uppercase tracking-widest overflow-hidden">
                                 <div className="relative z-10 flex items-center justify-center gap-3">
                                     INITIATE_DEPLOYMENT <Rocket size={20} className="fill-current group-hover:animate-bounce" />
                                 </div>

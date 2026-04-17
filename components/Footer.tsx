@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Terminal, Twitter, Linkedin, Youtube, ShieldCheck, Cpu, Globe, Zap, ChevronRight, Facebook } from 'lucide-react';
 import { FaDiscord } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -166,7 +167,7 @@ const Footer = () => {
                <div className="flex gap-4">
                   <Link href="https://www.linkedin.com/company/zeroday-test" className="text-gray-400 hover:text-white transition-all"><Linkedin size={22} /></Link>
                   <Link href="https://www.facebook.com/share/1F2He1nY9Q/" className="text-gray-400 hover:text-white transition-all"><Facebook size={22} /></Link>
-                  <Link href="https://x.com/Zer0day_t3st" className="text-gray-400 hover:text-white transition-all"><Twitter size={22} /></Link>
+                  <Link href="https://x.com/Zer0day_t3st" className="text-gray-400 hover:text-white transition-all"><FaXTwitter size={22} /></Link>
                   <Link href="https://www.youtube.com/@HackerBhao" className="text-gray-400 hover:text-white transition-all"><Youtube size={22} /></Link>
                   <Link href="https://discord.gg/F88eZM9bf" className="text-gray-400 hover:text-white transition-all"><FaDiscord size={22} /></Link>
                </div>
