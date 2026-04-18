@@ -107,8 +107,12 @@ import {
   XCircle,
   DollarSign,
   Award,
-  FileBadge
+  FileBadge,
+  CheckCircle,
+  ExternalLink,
+  Dot
 } from 'lucide-react';
+import Link from 'next/link';
 
 const sections = [
   { id: "notice", title: "1. Notice at Collection", icon: <Info size={16} /> },
@@ -2646,9 +2650,9 @@ export default function PrivacyPolicyPage() {
                     </div>
 
                     {/* 6.2 Trademarks & 6.4 Platform Data */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 gap-6">
                       {/* 6.2 Trademarks */}
-                      <div className="p-6 md:p-8 bg-zinc-900/50 border border-white/5 rounded-[2.5rem] space-y-4 relative overflow-hidden group">
+                      <div className="p-6 md:p-8 bg-zinc-900/50 border border-white/5 rounded-[1.5rem] space-y-4 relative overflow-hidden group">
                         <div className="absolute -top-4 -right-4 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity">
                           <Award size={120} />
                         </div>
@@ -2666,94 +2670,78 @@ export default function PrivacyPolicyPage() {
                         </p>
                       </div>
 
-                      {/* 6.3 Copyright Protection Node - Fully Responsive Fix */}
-                      <div className="space-y-8 pt-10 border-t border-white/5 mt-10 md:mt-12">
-  <div className="space-y-6">
-    {/* Section Header - মোবাইলে সেন্টারে থাকবে */}
-    <div className="flex flex-col md:flex-row items-center md:items-center gap-4 px-4 md:px-0 text-center md:text-left">
-      <div className="p-2.5 bg-green-500/10 rounded-xl border border-green-500/20 shadow-[0_0_15px_rgba(34,197,94,0.1)]">
-        <Gavel size={20} className="text-green-500" />
-      </div>
-      <h4 className="text-white font-black text-sm md:text-lg uppercase tracking-[0.15em] md:tracking-[0.2em] italic leading-tight">
-        6.3 Copyright Protection <span className="hidden md:inline">&</span> <br className="md:hidden" /> Jurisdictions
-      </h4>
-    </div>
+                      {/* 6.3 Copyright Protection Section */}
+                      <div className="space-y-6 border-t border-white/5">
+                        <div className="space-y-4 border border-white/5 p-6 md:p-10 rounded-[1.5rem] md:rounded-[3rem] relative overflow-hidden group hover:border-green-500/20 transition-all duration-500">
+                          {/* Section Header */}
+                          <div className="flex items-center gap-3 px-4 md:px-0">
+                            <div className="p-2 bg-green-500/10 rounded-lg">
+                              <Gavel size={18} className="text-green-500" />
+                            </div>
+                            <h4 className="text-white font-black text-sm md:text-base uppercase tracking-[0.2em] italic">
+                              6.3 Copyright Protection
+                            </h4>
+                          </div>
 
-    {/* Main Content Container */}
-    <div className="w-full bg-zinc-950/60 border border-white/5 rounded-[1.5rem] md:rounded-[3rem] p-5 sm:p-8 md:p-12 relative overflow-hidden group hover:border-green-500/20 transition-all duration-500 shadow-2xl">
-      
-      {/* Background Matrix Effect (Subtle) - মোবাইলে কমানো হয়েছে */}
-      <div className="absolute inset-0 opacity-[0.02] md:opacity-[0.04] pointer-events-none font-mono text-[8px] md:text-[10px] p-4 md:p-6 break-all leading-tight select-none">
-        {Array(8).fill("LEGAL_JURISDICTION_PROTECTED_BY_BYTE_CAPSULE_").join(" ")}
-      </div>
+                          {/* Main Content Box */}
+                          <div className="w-full bg-zinc-950/60  rounded-[1.5rem] md:rounded-[3rem] p-6 md:p-10 relative overflow-hidden group hover:border-green-500/20 transition-all duration-500 shadow-2xl">
 
-      <div className="relative z-10 space-y-8 md:space-y-10">
-        {/* Intro Text */}
-        <p className="text-gray-400 font-mono text-[10px] sm:text-[11px] md:text-[13px] uppercase leading-relaxed tracking-wide max-w-3xl text-center md:text-left mx-auto md:mx-0">
-          All intellectual property rights associated with the Platform are 
-          <span className="text-white font-black underline decoration-green-500/40 underline-offset-4 ml-1">
-            strictly protected
-          </span> under the legislative frameworks of Bangladesh:
-        </p>
+                            {/* Background Matrix Decor (Subtle) */}
+                            <div className="absolute inset-0 opacity-[0.02] pointer-events-none font-mono text-[10px] p-6 break-all leading-tight select-none">
+                              {Array(6).fill("LEGAL_PROTECTION_INTELLECTUAL_PROPERTY_").join(" ")}
+                            </div>
 
-        {/* Laws Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {[
-            {
-              title: "The Copyright Act, 2000",
-              desc: "As amended and updated periodically to ensure digital content safety.",
-              icon: <FileSignature size={20} />
-            },
-            {
-              title: "Patent & Trademarks Act, 2022",
-              desc: "Governing the Patent, Design and Trademark Act jurisdiction.",
-              icon: <FileBadge size={20} />
-            },
-            {
-              title: "International Conventions",
-              desc: "Global treaties and intellectual property protocols where Bangladesh is a signatory.",
-              icon: <Globe size={20} />
-            }
-          ].map((item, i) => (
-            <div key={i} className="flex flex-col h-full p-5 md:p-6 bg-black/40 border border-white/10 rounded-[1.5rem] md:rounded-[2rem] group/item hover:border-green-500/40 hover:bg-black/60 transition-all duration-300">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="shrink-0 p-3 bg-green-500/5 rounded-2xl text-green-600 group-hover/item:text-green-400 group-hover/item:bg-green-500/10 transition-all">
-                  {item.icon}
-                </div>
-                <h6 className="text-white font-black text-[10px] md:text-[12px] uppercase tracking-tight leading-tight">
-                  {item.title}
-                </h6>
-              </div>
-              <p className="text-[9px] md:text-[10px] text-gray-500 font-mono uppercase leading-relaxed italic mt-auto border-t border-white/5 pt-4">
-                {item.desc}
-              </p>
-            </div>
-          ))}
-        </div>
+                            <div className="relative z-10 space-y-8">
+                              {/* Sub-header */}
+                              <p className="text-gray-300 font-mono text-[11px] md:text-[13px] uppercase leading-relaxed tracking-wider">
+                                All intellectual property rights are protected under:
+                              </p>
 
-        {/* Tactical Footer Badge */}
-        <div className="pt-6 md:pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-5">
-          <div className="flex items-center gap-3 px-4 py-2 bg-green-500/5 border border-green-500/20 rounded-full w-full sm:w-auto justify-center">
-            <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"></div>
-            <span className="text-[9px] md:text-[10px] font-mono text-green-500 font-black uppercase tracking-widest">
-              Legal_Enforcement: Active
-            </span>
-          </div>
+                              {/* Legal Points Grid */}
+                              <div className="grid grid-cols-1  gap-4">
+                                {[
+                                  {
+                                    text: "The Copyright Act, 2000 (as amended)",
+                                    icon: <FileSignature size={10} />
+                                  },
+                                  {
+                                    text: "The Patent Design and Trademark Act, 2022",
+                                    icon: <FileBadge size={10} />
+                                  },
+                                  {
+                                    text: "International conventions to which Bangladesh is a signatory",
+                                    icon: <Globe size={10} />
+                                  }
+                                ].map((item, i) => (
+                                  <div key={i} className="flex flex-col p-5 bg-black/60 border border-white/10 rounded-2xl group/item hover:border-green-500/40 transition-all duration-300">
+                                    <div className="flex items-start gap-3">
+                                      <div className="mt-1 text-green-500 group-hover/item:scale-110 transition-transform">
+                                        {item.icon}
+                                      </div>
+                                      <p className="text-[5px] md:text-[8px] text-gray-400 font-mono uppercase leading-relaxed font-bold tracking-tighter italic group-hover/item:text-white transition-colors">
+                                        {item.text}
+                                      </p>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
 
-          <div className="flex items-center gap-2 text-[9px] font-mono text-gray-600 uppercase tracking-tighter">
-            <ShieldCheck size={12} className="text-green-900/50" />
-            Jurisdiction: PR of Bangladesh
-          </div>
-        </div>
-      </div>
+                              {/* Tactical Status Line */}
+                              <div className="pt-6 border-t border-white/5 flex items-center gap-3">
+                                <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_#22c55e]"></div>
+                                <span className="text-[9px] font-mono text-green-900 uppercase tracking-[0.3em] font-black">
+                                  Jurisdiction: Bangladesh // System_Active
+                                </span>
+                              </div>
+                            </div>
 
-      {/* Background Watermark - মোবাইলে ছোট করা হয়েছে */}
-      <div className="absolute -bottom-10 -right-10 md:-bottom-8 md:-right-8 opacity-[0.02] pointer-events-none group-hover:opacity-[0.05] transition-opacity duration-1000">
-        <Scale size={180} className="md:w-[240px] md:h-[240px]" />
-      </div>
-    </div>
-  </div>
-</div>
+                            {/* Background Watermark */}
+                            <div className="absolute -bottom-6 -right-6 opacity-[0.02] pointer-events-none group-hover:opacity-[0.05] transition-opacity duration-1000">
+                              <ShieldCheck size={180} />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
                       {/* 6.4 Platform Data */}
                       <div className="p-6 md:p-8 bg-zinc-900/50 border border-white/5 rounded-[2.5rem] space-y-4 relative overflow-hidden group">
@@ -2764,38 +2752,458 @@ export default function PrivacyPolicyPage() {
                           <ShieldCheck size={14} className="text-green-500" /> 6.4 Platform Data
                         </h4>
                         <p className="text-[11px] text-gray-400 font-mono uppercase leading-relaxed">
-                          The Company retains <span className="text-white font-bold">exclusive ownership</span> of interactions, stats, and metadata generated within the Platform. Users agree not to extract, use, or replicate part of this data without consent.
+                          The Company retains exclusive ownership of the User interactions, statistical information,
+                          and metadata compiled, aggregated, or generated within the Platform (the "Platform Data").
+                          This Platform Data is protected under all applicable laws of Bangladesh, and Users
+                          acknowledge that they have no ownership rights in the Platform Data and agree not to extract,
+                          use, or replicate all or part of the Platform Data without the Company's prior written consent.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                {/* 7. CONFIDENTIALITY PROTOCOL */}
+                <section id="rights" className="scroll-mt-32">
+                  <div className="flex items-center gap-4 mb-10">
+                    <div className="p-3 bg-green-500/10 rounded-2xl text-green-500 border border-green-500/20 shadow-[0_0_20px_rgba(34,197,94,0.1)]">
+                      <Eye size={24} />
+                    </div>
+                    <h2 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter italic">
+                      7. Confidentiality Protocol
+                    </h2>
+                  </div>
+
+                  <div className="ml-0 md:ml-6 space-y-12 pl-0 md:pl-6 border-l-0 md:border-l border-green-500/20">
+
+                    {/* 7.1 Confidentiality Obligations */}
+                    <div className="space-y-6">
+                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0">
+                        <Lock size={16} className="text-green-500" /> 7.1 Confidentiality Obligations
+                      </h4>
+                      <div className="p-6 md:p-10 bg-zinc-950/60 border border-white/5 rounded-[2rem] md:rounded-[3rem] relative overflow-hidden group">
+                        <div className="relative z-10 space-y-8">
+                          <p className="text-[12px] md:text-[13px] text-gray-300 font-mono uppercase leading-relaxed italic border-b border-white/5 pb-6">
+                            "Users have an <span className="text-white font-bold underline decoration-green-500/30">obligation to keep confidential</span> all information:"
+                          </p>
+
+                          {/* Triggers Grid */}
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            {[
+                              { id: "01", label: "Access", text: "To which they have access" },
+                              { id: "02", label: "Knowledge", text: "Brought to their knowledge" },
+                              { id: "03", label: "Possession", text: "Which they possess in the context of the Services" }
+                            ].map((item, i) => (
+                              <div key={i} className="p-5 bg-black/40 border border-white/5 rounded-2xl group/item hover:border-green-500/20 transition-all">
+                                <span className="text-green-900 font-mono text-[10px] block mb-2">NODE_{item.id}</span>
+                                <p className="text-[11px] text-gray-400 font-mono uppercase font-bold group-hover/item:text-white transition-colors">{item.text}</p>
+                              </div>
+                            ))}
+                          </div>
+
+                          <div className="p-6 bg-green-500/5 border-l-2 border-green-600 rounded-r-2xl">
+                            <p className="text-[11px] md:text-[12px] text-gray-400 font-mono uppercase leading-relaxed">
+                              This applies whether information is in <span className="text-white">oral or written form</span> and whatever the medium, <span className="text-white font-bold italic underline decoration-white/20">irrespective of whether it is explicitly indicated to be confidential or not</span>.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 7.2 Non-Disclosure */}
+                    <div className="space-y-6">
+                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0">
+                        <ShieldAlert size={16} className="text-red-500" /> 7.2 Non-Disclosure Directive
+                      </h4>
+                      <div className="p-8 bg-red-900/5 border border-red-500/10 rounded-[2.5rem] relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 p-6 opacity-[0.03] rotate-12">
+                          <Lock size={120} className="text-red-500" />
+                        </div>
+                        <p className="relative z-10 text-[12px] md:text-[13px] text-gray-300 font-mono uppercase leading-relaxed italic">
+                          Users shall <span className="text-red-500 font-black">not disclose or make available</span> such information to any third-party for any reason whatsoever and this regardless of the legal and/or economic ties that a User may have with such third-party.
                         </p>
                       </div>
                     </div>
 
-                    {/* 6.3 Copyright Protection Laws (The Legal Base) */}
-                    <div className="p-8 bg-green-500/5 border border-green-500/20 rounded-[2.5rem] md:rounded-[3rem] relative overflow-hidden">
-                      <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+                    {/* 7.3 Data Deletion Protocol */}
+                    <div className="space-y-6">
+                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0">
+                        <History size={16} className="text-green-500" /> 7.3 Post-Program Data Deletion
+                      </h4>
+                      <div className="p-8 bg-zinc-950/60 border border-white/5 rounded-[3rem] space-y-8 relative overflow-hidden">
                         <div className="space-y-4">
-                          <div className="flex items-center gap-3">
-                            <Gavel size={18} className="text-green-500" />
-                            <h4 className="text-white font-black text-sm uppercase tracking-[0.2em]">6.3 Legal Framework</h4>
-                          </div>
-                          <p className="text-[11px] text-gray-500 font-mono uppercase leading-relaxed max-w-xl">
-                            All Intellectual Property rights are protected under the following jurisdictions of Bangladesh:
+                          <p className="text-[12px] md:text-[13px] text-gray-300 font-mono uppercase leading-relaxed">
+                            At the end of a Program, Security Researchers <span className="text-green-500 font-bold underline decoration-white/20">will delete from their systems</span> all Customer's information and data of any kind, including:
                           </p>
-                          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
-                            {[
-                              "The Copyright Act, 2000 (as amended)",
-                              "The Patent Design and Trademark Act, 2022",
-                              "International Signed Conventions"
-                            ].map((law, i) => (
-                              <li key={i} className="flex items-center gap-2 text-[10px] text-green-700 font-mono uppercase font-bold italic">
-                                <div className="w-1 h-1 bg-green-500 rounded-full shadow-[0_0_5px_#22c55e]"></div> {law}
-                              </li>
+                          <div className="flex flex-wrap gap-3">
+                            {["Personal Data", "Vulnerability Reports", "Operational Metadata"].map((tag, i) => (
+                              <span key={i} className="px-3 py-1 bg-black border border-white/10 text-gray-500 text-[9px] font-mono rounded uppercase">{tag}</span>
                             ))}
+                          </div>
+                        </div>
+
+                        <div className="p-6 bg-black/60 border border-white/5 rounded-2xl border-l-2 border-l-green-600">
+                          <div className="flex items-start gap-4">
+                            <div className="mt-1 text-green-500"><Terminal size={16} /></div>
+                            <p className="text-[11px] text-gray-400 font-mono uppercase leading-relaxed italic">
+                              "Security Researchers shall produce, <span className="text-white">at any time and upon Customer's first request</span>, any certificate attesting to the deletion of the said information."
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 7.4 Legal Protection Framework */}
+                    <div className="space-y-6">
+                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0">
+                        <Gavel size={16} className="text-green-500" /> 7.4 Legal Protection & Acts
+                      </h4>
+                      <div className="p-8 bg-green-500/5 border border-green-500/20 rounded-[3rem] relative">
+                        <div className="relative z-10 space-y-6">
+                          <p className="text-[11px] text-gray-500 font-mono uppercase tracking-[0.2em] font-black">Confidential information is protected under:</p>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {[
+                              "The Official Secrets Act, 1923",
+                              "The Evidence Act, 1872",
+                              "Common law principles of confidentiality",
+                              "Contractual obligations under these GCU"
+                            ].map((law, i) => (
+                              <div key={i} className="flex items-center gap-3 p-4 bg-black/60 border border-white/5 rounded-xl group/law hover:border-green-500/30 transition-all">
+                                <div className="w-1.5 h-1.5 bg-green-500 rounded-full shadow-[0_0_5px_#22c55e]"></div>
+                                <span className="text-[10px] md:text-[11px] text-gray-400 font-mono font-bold uppercase group-hover/law:text-white transition-colors tracking-tight">{law}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        {/* Background Watermark */}
+                        <div className="absolute -bottom-4 -right-4 opacity-[0.02] pointer-events-none">
+                          <ShieldCheck size={200} />
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </section>
+
+                {/* 8. PERSONAL DATA PROTOCOL */}
+                <section id="retention" className="scroll-mt-32">
+                  <div className="flex items-center gap-4 mb-10">
+                    <div className="p-3 bg-green-500/10 rounded-2xl text-green-500 border border-green-500/20 shadow-[0_0_20px_rgba(34,197,94,0.1)]">
+                      <Fingerprint size={24} />
+                    </div>
+                    <h2 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter italic">
+                      8. Personal Data Governance
+                    </h2>
+                  </div>
+
+                  <div className="ml-0 md:ml-6 space-y-12 pl-0 md:pl-6 border-l-0 md:border-l border-green-500/20">
+
+                    {/* 8.1 Data Processing & 8.2 Legal Compliance */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      {/* 8.1 Data Processing */}
+                      <div className="p-6 md:p-8 bg-zinc-950/60 border border-white/5 rounded-[2.5rem] relative overflow-hidden group">
+                        <h4 className="text-white font-black text-xs uppercase tracking-widest flex items-center gap-2 mb-6">
+                          <Database size={14} className="text-green-500" /> 8.1 Data Processing
+                        </h4>
+                        <p className="text-[12px] text-gray-400 font-mono uppercase leading-relaxed mb-6">
+                          For the purpose of providing access to its Platform, the Company processes the <span className="text-white font-bold">Personal Data of the Users</span>, as a data controller or joint controller with its payment service provider.
+                        </p>
+                        <p className='text-[12px] pb-2'>The details of these processing activities are available in the Platform Privacy Policy at:</p>
+                        <Link href="/policy" className="inline-flex items-center gap-2 text-[10px] font-bold text-green-500 hover:text-white transition-colors uppercase border border-green-500/20 px-4 py-2 rounded-full bg-green-500/5">
+                          View Platform Privacy Policy <ExternalLink size={12} />
+                        </Link>
+
+                        {/* Confidential Badge */}
+                        <div className="mt-8 pt-6 border-t border-white/5 flex justify-center">
+                          <span className="px-4 py-1 bg-zinc-800 text-zinc-500 font-mono text-[9px] uppercase tracking-[0.6em] font-black italic">
+                            CONFIDENTIAL
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* 8.2 Legal Compliance */}
+                      <div className="p-6 md:p-8 bg-zinc-900/50 border border-white/5 rounded-[2.5rem] relative group">
+                        <h4 className="text-white font-black text-xs uppercase tracking-widest flex items-center gap-2 mb-6">
+                          <ShieldCheck size={14} className="text-green-500" /> 8.2 Legal Compliance
+                        </h4>
+                        <p className="text-[11px] text-gray-500 font-mono uppercase mb-4 tracking-tighter">The Company processes personal data in compliance with:</p>
+                        <ul className="space-y-3">
+                          {[
+                            "The Information and Communication Technology Act, 2006",
+                            "Digital Security Act, 2018 (Section 26: Collection of personal info)",
+                            "Bangladesh Telecommunication Regulatory Commission (BTRC) Rules",
+                            "Industry best practices for data protection"
+                          ].map((item, i) => (
+                            <li key={i} className="flex items-start gap-3 p-3 bg-black/40 border border-white/5 rounded-xl">
+                              <div className="w-1 h-1 bg-green-500 rounded-full mt-1.5 shadow-[0_0_5px_#22c55e]"></div>
+                              <span className="text-[10px] text-gray-400 font-mono uppercase leading-tight italic">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    {/* 8.3 Security Researchers' Obligations */}
+                    <div className="space-y-6">
+                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0">
+                        <UserCheck size={16} className="text-green-500" /> 8.3 Security Researchers' Obligations
+                      </h4>
+                      <div className="p-8 bg-zinc-950/60 border border-white/5 rounded-[3rem] relative overflow-hidden">
+                        <p className="text-[12px] text-gray-300 font-mono uppercase leading-relaxed mb-5 italic">
+                          As part of the performance of the Tests and depending on the scope of a Program, Security Researchers may have access to Personal Data processed by the Customer.
+                        </p>
+                        <p className='text-green-500 mb-2'>Security Researchers shall:</p>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {[
+                            "Ensure the security and confidentiality of said Personal Data",
+                            "Take all necessary technical and organizational measures to prevent the destruction, loss, alteration, unauthorized disclosure, or access to the Personal Data, whether accidental or illicit",
+                            "Not make any use or process such Personal Data beyond what is strictly necessary for testing",
+                            "Comply with any data privacy policy set out in a Program",
+                            "Comply with Section 26 of the Digital Security Act, 2018 regarding unauthorized collection of personal information"
+                          ].map((task, i) => (
+                            <div key={i} className="flex items-center gap-4 p-4 bg-black/60 border border-white/5 rounded-2xl group hover:border-green-500/30 transition-all">
+                              <div className="text-green-900 group-hover:text-green-500 transition-colors font-mono text-xs font-black italic">NODE_0{i + 1}</div>
+                              <p className="text-[10px] text-gray-500 font-mono uppercase font-bold group-hover:text-white transition-colors">{task}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 8.4 Data Breach Notification */}
+                    <div className="space-y-6">
+                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0 text-red-500">
+                        <AlertTriangle size={16} /> 8.4 Data Breach Notification
+                      </h4>
+                      <div className="p-8 bg-red-900/5 border border-red-500/10 rounded-[2.5rem] relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 p-8 opacity-[0.03]">
+                          <Siren size={120} className="text-red-500 animate-pulse" />
+                        </div>
+                        <div className="relative z-10 space-y-6">
+                          <p className="text-[12px] text-gray-300 font-mono uppercase leading-relaxed">
+                            In case of any <span className="text-red-500 font-black">Personal Data breach</span>, users must <span className="text-white font-bold italic underline decoration-red-500/50 underline-offset-4">immediately</span> notify:
+                          </p>
+                          <div className="flex flex-wrap gap-4">
+                            {["The Company", "The Affected Customer", "Bangladesh Telecommunication Regulatory Commission (BTRC) if required", "Any other authority as mandated by law"].map((node, i) => (
+                              <div key={i} className="px-5 py-2 bg-black/60 border border-red-500/20 rounded-full text-[9px] font-mono text-red-400 uppercase font-black tracking-widest">
+                                &gt; {node}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 8.5 Privacy Rights */}
+                    <div className="space-y-6">
+                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0">
+                        <Lock size={16} className="text-green-500" /> 8.5 Subject Privacy Rights
+                      </h4>
+                      <div className="p-8 bg-green-500/5 border border-green-500/20 rounded-[3rem] relative overflow-hidden">
+                        <div className="flex flex-col md:flex-row justify-between items-start gap-8">
+                          <div className="space-y-6 flex-1">
+                            <p className="text-[12px] text-gray-400 font-mono uppercase italic">
+                              A User can exercise its privacy rights by writing to: <span className="text-green-500 font-bold underline decoration-green-500/30">[INSERT PRIVACY EMAIL]</span>
+                            </p>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                              {[
+                                "Right to access personal data",
+                                "Right to correct inaccurate data",
+                                "Right to delete data (Subject to legal retention)",
+                                "Right to object to certain processing",
+                                "Right to lodge complaints with authorities"
+                              ].map((right, i) => (
+                                <div key={i} className="flex items-center gap-3">
+                                  <CheckCircle size={12} className="text-green-500 shrink-0" />
+                                  <span className="text-[10px] text-gray-500 font-mono uppercase font-bold tracking-tight">{right}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                          {/* Visual ID Card */}
+                          <div className="p-6 bg-black border border-green-900/30 rounded-3xl shrink-0 self-center hidden lg:block">
+                            <div className="w-12 h-1 bg-green-500 mb-4 rounded-full"></div>
+                            <div className="space-y-2 opacity-30">
+                              <div className="w-24 h-2 bg-gray-700 rounded"></div>
+                              <div className="w-16 h-2 bg-gray-700 rounded"></div>
+                            </div>
+                            <div className="mt-6 flex justify-end">
+                              <div className="p-1 border border-green-500/20 rounded">
+                                <QrCode size={24} className="text-green-900" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </section>
+
+                {/* 9. LIABILITY & RISK ALLOCATION */}
+                <section id="retention" className="scroll-mt-32">
+                  <div className="flex items-center gap-4 mb-10">
+                    <div className="p-3 bg-red-500/10 rounded-2xl text-red-500 border border-red-500/20 shadow-[0_0_20px_rgba(239,68,68,0.1)]">
+                      <Scale size={24} />
+                    </div>
+                    <h2 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter italic text-red-500">
+                      9. Liability Framework
+                    </h2>
+                  </div>
+
+                  <div className="ml-0 md:ml-6 space-y-12 pl-0 md:pl-6 border-l-0 md:border-l border-red-500/20">
+
+                    {/* 9.1 Company's Liability */}
+                    <div className="space-y-6">
+                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0">
+                        <ShieldAlert size={16} className="text-red-500" /> 9.1 Company's Liability Exclusions
+                      </h4>
+                      <div className="p-6 md:p-8 bg-zinc-950/60 border border-white/5 rounded-[2.5rem] relative overflow-hidden group">
+                        <p className="text-[12px] text-gray-400 font-mono uppercase leading-relaxed mb-6 italic">
+                          "The Company shall <span className="text-red-500 font-black">under no circumstance</span> be liable for:"
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {[
+                            "Use or misuse of the Platform or Services, including but not limited to Customer User's failure in the definition and management of the Program (i.e., inaccuracy, error, omission), nor for any malfunction of the Platform resulting from the User, or a third party's actions or omissions",
+                            "Non-compliance with these GCU, violation of the rules of the Program or any other agreement by the Security Researchers.",
+                            "Suspension of access to the Platform and/or the Services under the conditions defined in Article 4.7",
+                            "Incidents due to the use of Internet (e.g., loss of connectivity).",
+                            "Any violations of the Digital Security Act, 2018 or other Bangladesh laws by Users."
+                          ].map((text, i) => (
+                            <div key={i} className="flex gap-4 p-4 bg-black/40 border border-white/5 rounded-2xl">
+                              <div className="text-red-900 font-mono text-xs font-black">NODE_{i + 1}</div>
+                              <p className="text-[10px] text-gray-500 font-mono uppercase tracking-tight leading-relaxed">{text}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 9.2 & 9.3 Limitation of Liability & Content */}
+                    <div className="grid grid-cols-1 gap-6">
+                      {/* 9.2 Limitation */}
+                      <div className="p-8 bg-zinc-900/50 border border-white/5 rounded-[3rem] space-y-6">
+                        <h4 className="text-white font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                          <Info size={14} className="text-green-500" /> 9.2 Limitation Node
+                        </h4>
+                        <p className="text-[11px] text-gray-400 font-mono uppercase leading-relaxed">
+                          Any reputation, classification, or description of a Security Researcher's skills in connection
+                          with the Bug Bounty Service is for information purposes only. Any selection of a Security
+                          Researcher is made by the Customer User and as such, shall be decided at the Customer's
+                          discretion and under its sole responsibility.
+                          The Company provides support in the drafting of the Programs and Vulnerability Reports and
+                          intervenes, as part of a Program, only as an intermediary to introduce Security Researchers to
+                          the Customers and its related Customer Users.
+                          The Company shall therefore not be liable for any damage caused by a Customer, a User, or a
+                          Security Researcher's failure to perform their obligations, whether partially or totally.
+                        </p>
+                      </div>
+
+                      {/* 9.3 No Liability for Content */}
+                      <div className="p-8 bg-zinc-900/50 border border-white/5 rounded-[3rem] space-y-6">
+                        <h4 className="text-white font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                          <FileWarning size={14} className="text-yellow-500" /> 9.3 Content Disclaimer
+                        </h4>
+                        <p className="text-[11px] text-gray-400 font-mono uppercase leading-relaxed italic">
+                          The Security Researcher is responsible for all damage caused to the Company and/or other Users. The Security Researcher agrees to indemnify the Company and/or Users, in case of any order to pay damages and interest that the Company or Users might incur as a result of:
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          <p className='text-[10px] flex items-center'> <Dot className='text-green-500' size={32} /> Non-compliance with these GCU</p>
+                          <p className='text-[10px] flex items-center'> <Dot className='text-green-500' size={32} /> Damages caused to others or to itself</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 9.4 Security Researchers' Liability (The Critical Section) */}
+                    <div className="space-y-6">
+                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0 text-red-500">
+                        <Gavel size={16} /> 9.4 Security Researchers' Liability
+                      </h4>
+                      <div className="p-8 bg-red-900/5 border border-red-500/20 rounded-[3rem] relative overflow-hidden group">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none font-mono text-[80px] font-black leading-none -rotate-12 whitespace-nowrap">
+                          CONFIDENTIAL
+                        </div>
+
+                        <div className="relative z-10 space-y-6">
+                          <p className="text-[12px] text-gray-300 font-mono uppercase leading-relaxed">
+                            Researchers are responsible for <span className="text-white font-bold underline decoration-red-500/50">all damage</span> caused to the Company or Users.
+                            Researchers agree to indemnify the Company/Users for losses resulting from:
+                          </p>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            {[
+                              "Non-compliance with these GCU",
+                              "Damages caused to others or itself",
+                              "Violation of the Digital Security Act, 2018",
+                              "Unauthorized testing or hacking activities",
+                              "Breach of confidentiality obligations"
+                            ].map((item, i) => (
+                              <div key={i} className="flex items-center gap-3 p-3 bg-black/60 rounded-xl border border-red-500/10">
+                                <X size={12} className="text-red-500" />
+                                <span className="text-[9px] text-red-400 font-mono uppercase font-black">{item}</span>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Bangladesh Law Penalties Box */}
+                          <div className="p-6 bg-red-600/10 border-2 border-red-600/30 rounded-2xl space-y-4">
+                            <h5 className="text-white font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                              <ShieldAlert size={14} className="animate-pulse" /> Bangladesh Law Prosecution Nodes
+                            </h5>
+                            <div className="grid md:grid-cols-2 gap-4">
+                              <div className="p-4 bg-black/60 rounded-xl border border-red-500/20">
+                                <p className="text-red-500 font-bold text-[10px] uppercase underline">Section 36: Computer Trespassing</p>
+                                <p className="text-gray-400 text-[9px] font-mono mt-1 uppercase italic">Up to 14 years imprisonment // Fine up to BDT 1 Crore</p>
+                              </div>
+                              <div className="p-4 bg-black/60 rounded-xl border border-red-500/20">
+                                <p className="text-red-500 font-bold text-[10px] uppercase underline">Section 37: Unauthorized Copying</p>
+                                <p className="text-gray-400 text-[9px] font-mono mt-1 uppercase italic">Up to 5 years imprisonment // Fine up to BDT 10 Lakh</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 9.5 Customer Users' Liability */}
+                    <div className="space-y-6">
+                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0">
+                        <Users size={16} className="text-green-500" /> 9.5 Customer Users' Liability
+                      </h4>
+                      <div className="p-8 bg-zinc-950/60 border border-white/5 rounded-[3rem] space-y-6">
+                        <p className="text-[12px] text-gray-300 font-mono uppercase leading-relaxed">
+                          The Customer User is <span className="text-white font-black italic">solely responsible</span> for designating systems, inviting researchers, and ensuring authorization for monitored systems.
+                        </p>
+                        <div className="p-6 bg-black/40 border border-white/5 rounded-2xl space-y-3">
+                          <h6 className="text-green-500 font-black text-[10px] uppercase tracking-widest border-b border-green-900/20 pb-2">ASM_SERVICE_CONTEXT</h6>
+                          <ul className="text-[10px] text-gray-500 font-mono space-y-2 uppercase leading-relaxed">
+                            <li>• Findings must be qualified by the Customer User (i.e., validated as Vulnerabilities).</li>
+                            <li>• The Customer User must accept or refuse the submitted Vulnerabilities.</li>
                           </ul>
                         </div>
-                        <div className="hidden md:block">
-                          <div className="p-6 bg-black border border-green-900/30 rounded-full">
-                            <span className="text-[12px] font-black text-green-500 rotate-12 block uppercase">IPR_PROTECT</span>
+                      </div>
+                    </div>
+
+                    {/* 9.6 Indemnification Protocol */}
+                    <div className="p-10 bg-green-500/5 border border-green-500/20 rounded-[4rem] relative overflow-hidden group">
+                      <div className="absolute inset-0 bg-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity blur-[100px] pointer-events-none"></div>
+
+                      <div className="relative z-10 space-y-6">
+                        <div className="flex items-center gap-4">
+                          <div className="p-3 bg-green-500/20 rounded-2xl text-green-500">
+                            <History size={24} />
                           </div>
+                          <h4 className="text-xl font-black text-white uppercase italic tracking-tighter">9.6 Indemnification Agreement</h4>
+                        </div>
+                        <p className="text-[12px] text-gray-400 font-mono uppercase leading-relaxed max-w-4xl italic border-l-2 border-green-500 pl-6">
+                          "Users agree to indemnify, defend and hold harmless the Company, its officers, directors, employees, agents, and affiliates from any claims, damages, losses, liabilities, and all costs and expenses of defense, including attorneys' fees, resulting from:"
+                        </p>
+                        <div className="flex flex-wrap gap-3 pt-4">
+                          {["Violation of these GCU", "Breach of Warranty", "Violation of Digital Security Act, 2018"].map((node, i) => (
+                            <div key={i} className="px-4 py-2 bg-black border border-green-500/20 rounded-full text-[9px] font-mono text-green-500 uppercase font-black tracking-widest">
+                              &gt; {node}
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </div>
