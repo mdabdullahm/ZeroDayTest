@@ -110,7 +110,13 @@ import {
   FileBadge,
   CheckCircle,
   ExternalLink,
-  Dot
+  Dot,
+  Building2,
+  Briefcase,
+  Building,
+  MessageSquare,
+  FileCode,
+  Calendar
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -3115,71 +3121,187 @@ export default function PrivacyPolicyPage() {
                       </div>
                     </div>
 
-                    {/* 9.4 Security Researchers' Liability (The Critical Section) */}
-                    <div className="space-y-6">
-                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0 text-red-500">
-                        <Gavel size={16} /> 9.4 Security Researchers' Liability
-                      </h4>
-                      <div className="p-8 bg-red-900/5 border border-red-500/20 rounded-[3rem] relative overflow-hidden group">
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none font-mono text-[80px] font-black leading-none -rotate-12 whitespace-nowrap">
-                          CONFIDENTIAL
-                        </div>
+                    {/* 9.4 Security Researchers' Liability */}
+                    <div className="space-y-6 pt-10 border-t border-white/5 mt-10">
+                      <div className="space-y-4">
+                        <h4 className="text-red-500 font-black text-sm uppercase tracking-widest flex items-center gap-2 px-4 md:px-0">
+                          <Gavel size={16} />
+                          9.4 Security Researchers' Liability Protocol
+                        </h4>
 
-                        <div className="relative z-10 space-y-6">
-                          <p className="text-[12px] text-gray-300 font-mono uppercase leading-relaxed">
-                            Researchers are responsible for <span className="text-white font-bold underline decoration-red-500/50">all damage</span> caused to the Company or Users.
-                            Researchers agree to indemnify the Company/Users for losses resulting from:
-                          </p>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {[
-                              "Non-compliance with these GCU",
-                              "Damages caused to others or itself",
-                              "Violation of the Digital Security Act, 2018",
-                              "Unauthorized testing or hacking activities",
-                              "Breach of confidentiality obligations"
-                            ].map((item, i) => (
-                              <div key={i} className="flex items-center gap-3 p-3 bg-black/60 rounded-xl border border-red-500/10">
-                                <X size={12} className="text-red-500" />
-                                <span className="text-[9px] text-red-400 font-mono uppercase font-black">{item}</span>
-                              </div>
-                            ))}
+                        <div className="p-8 bg-red-900/5 border border-red-500/20 rounded-[3rem] relative overflow-hidden group transition-all duration-500 hover:border-red-500/40">
+                          {/* Background Watermark */}
+                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none font-mono text-[80px] font-black leading-none -rotate-12 whitespace-nowrap select-none">
+                            CONFIDENTIAL
                           </div>
 
-                          {/* Bangladesh Law Penalties Box */}
-                          <div className="p-6 bg-red-600/10 border-2 border-red-600/30 rounded-2xl space-y-4">
-                            <h5 className="text-white font-black text-xs uppercase tracking-widest flex items-center gap-2">
-                              <ShieldAlert size={14} className="animate-pulse" /> Bangladesh Law Prosecution Nodes
-                            </h5>
-                            <div className="grid md:grid-cols-2 gap-4">
-                              <div className="p-4 bg-black/60 rounded-xl border border-red-500/20">
-                                <p className="text-red-500 font-bold text-[10px] uppercase underline">Section 36: Computer Trespassing</p>
-                                <p className="text-gray-400 text-[9px] font-mono mt-1 uppercase italic">Up to 14 years imprisonment // Fine up to BDT 1 Crore</p>
+                          <div className="relative z-10 space-y-8">
+                            {/* Primary Responsibility Statement */}
+                            <div className="p-6 bg-black/40 rounded-3xl border border-white/5 backdrop-blur-sm">
+                              <p className="text-[13px] text-gray-200 font-mono uppercase leading-relaxed font-bold">
+                                "The Security Researcher is <span className="text-red-500 underline decoration-red-500/40 underline-offset-4">responsible for all damage</span> caused to the Company and/or other Users."
+                              </p>
+                            </div>
+
+                            {/* Indemnification Protocol */}
+                            <div className="space-y-4">
+                              <p className="text-[12px] text-gray-400 font-mono uppercase leading-relaxed italic border-l-2 border-red-900 pl-6">
+                                The Security Researcher agrees to <span className="text-white">indemnify the Company and/or Users</span>, in case of any order to pay damages and interest that the Company or Users might incur as a result of:
+                              </p>
+
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                {[
+                                  "Non-compliance with these GCU",
+                                  "Damages caused to others or to itself",
+                                  "Violation of the Digital Security Act, 2018",
+                                  "Any unauthorized testing or hacking activities",
+                                  "Breach of confidentiality obligations"
+                                ].map((item, i) => (
+                                  <div key={i} className="flex items-center gap-3 p-3 bg-black/60 rounded-xl border border-white/5 group/item hover:border-red-500/30 transition-all">
+                                    <div className="w-1 h-1 bg-red-600 rounded-full shadow-[0_0_5px_#dc2626]"></div>
+                                    <span className="text-[10px] text-gray-500 font-mono uppercase font-black group-hover/item:text-red-400 transition-colors">
+                                      {item}
+                                    </span>
+                                  </div>
+                                ))}
                               </div>
-                              <div className="p-4 bg-black/60 rounded-xl border border-red-500/20">
-                                <p className="text-red-500 font-bold text-[10px] uppercase underline">Section 37: Unauthorized Copying</p>
-                                <p className="text-gray-400 text-[9px] font-mono mt-1 uppercase italic">Up to 5 years imprisonment // Fine up to BDT 10 Lakh</p>
+                            </div>
+
+                            {/* CRITICAL LEGAL PROSECUTION BOX */}
+                            <div className="p-8 bg-red-600/10 border-2 border-red-600/30 rounded-[1.5rem] space-y-6 relative overflow-hidden group/legal">
+                              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover/legal:opacity-20 transition-opacity">
+                                <ShieldAlert size={60} className="text-red-500" />
+                              </div>
+
+                              <div className="space-y-3">
+                                <h5 className="text-white font-black text-[9px] md:text-xs uppercase tracking-wider md:tracking-[0.3em] flex items-center justify-center md:justify-start gap-2 md:gap-3 text-center md:text-left leading-relaxed">
+                                  <AlertTriangle
+                                    className="w-3 h-3 md:w-[18px] md:h-[18px] text-red-500 animate-pulse shrink-0"
+                                  />
+
+                                  <span>Critical_Legal_Notice: Bangladesh Law Enforcement</span>
+                                </h5>
+                                <p className="text-[11px] text-gray-300 font-mono uppercase leading-relaxed max-w-2xl">
+                                  Any action taken outside the limits set by a Program may result in <span className="text-red-500 font-black italic underline">civil and/or criminal liability</span> under Bangladesh law, including:
+                                </p>
+                              </div>
+
+                              <div className="grid md:grid-cols-2 gap-4">
+                                {/* Section 36 */}
+                                <div className="p-5 bg-black/80 rounded-2xl border border-red-500/20 group/node hover:border-red-500/50 transition-all">
+                                  <h6 className="text-red-500 font-black text-[11px] uppercase mb-2 tracking-widest flex items-center gap-2">
+                                    <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div> Section 36
+                                  </h6>
+                                  <p className="text-white font-bold text-[11px] uppercase leading-tight italic">Computer Trespassing</p>
+                                  <div className="mt-4 space-y-1 border-t border-white/5 pt-3">
+                                    <p className="text-red-400 font-mono text-[9px] uppercase font-black tracking-tighter">● Up to 14 years imprisonment</p>
+                                    <p className="text-red-400 font-mono text-[9px] uppercase font-black tracking-tighter">● Fine up to BDT 1 Crore</p>
+                                  </div>
+                                </div>
+
+                                {/* Section 37 */}
+                                <div className="p-5 bg-black/80 rounded-2xl border border-red-500/20 group/node hover:border-red-500/50 transition-all">
+                                  <h6 className="text-red-500 font-black text-[11px] uppercase mb-2 tracking-widest flex items-center gap-2">
+                                    <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div> Section 37
+                                  </h6>
+                                  <p className="text-white font-bold text-[11px] uppercase leading-tight italic">Unauthorized Copying</p>
+                                  <div className="mt-4 space-y-1 border-t border-white/5 pt-3">
+                                    <p className="text-red-400 font-mono text-[9px] uppercase font-black tracking-tighter">● Up to 5 years imprisonment</p>
+                                    <p className="text-red-400 font-mono text-[9px] uppercase font-black tracking-tighter">● Fine up to BDT 10 Lakh</p>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Other Provisions Node */}
+                              <div className="p-3 bg-black/40 rounded-xl border border-white/5 text-center">
+                                <p className="text-[9px] text-gray-500 font-mono uppercase tracking-[0.2em] italic">
+                                  Prosecution under other applicable provisions of Bangladesh laws
+                                </p>
                               </div>
                             </div>
                           </div>
+
+                          {/* Bottom Visual Terminal Bar */}
+                          <div className="absolute bottom-0 left-0 w-full h-[2px] bg-red-600 animate-pulse"></div>
                         </div>
                       </div>
                     </div>
 
                     {/* 9.5 Customer Users' Liability */}
-                    <div className="space-y-6">
-                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0">
-                        <Users size={16} className="text-green-500" /> 9.5 Customer Users' Liability
-                      </h4>
-                      <div className="p-8 bg-zinc-950/60 border border-white/5 rounded-[3rem] space-y-6">
-                        <p className="text-[12px] text-gray-300 font-mono uppercase leading-relaxed">
-                          The Customer User is <span className="text-white font-black italic">solely responsible</span> for designating systems, inviting researchers, and ensuring authorization for monitored systems.
-                        </p>
-                        <div className="p-6 bg-black/40 border border-white/5 rounded-2xl space-y-3">
-                          <h6 className="text-green-500 font-black text-[10px] uppercase tracking-widest border-b border-green-900/20 pb-2">ASM_SERVICE_CONTEXT</h6>
-                          <ul className="text-[10px] text-gray-500 font-mono space-y-2 uppercase leading-relaxed">
-                            <li>• Findings must be qualified by the Customer User (i.e., validated as Vulnerabilities).</li>
-                            <li>• The Customer User must accept or refuse the submitted Vulnerabilities.</li>
-                          </ul>
+                    <div className="space-y-6 pt-10 border-t border-white/5 mt-10">
+                      <div className="space-y-4">
+                        <h4 className="text-white font-black text-sm uppercase tracking-widest flex items-center gap-2 px-4 md:px-0">
+                          <Users size={16} className="text-green-500" />
+                          9.5 Customer Users' Liability
+                        </h4>
+
+                        <div className="p-8 bg-zinc-950/60 border border-white/5 rounded-[3rem] relative overflow-hidden group hover:border-green-500/20 transition-all duration-500">
+                          {/* Background Icon Watermark */}
+                          <div className="absolute -top-10 -right-10 opacity-[0.02] pointer-events-none group-hover:opacity-[0.05] transition-opacity">
+                            <Building2 size={200} className="text-green-500" />
+                          </div>
+
+                          <div className="relative z-10 space-y-8">
+                            {/* Sole Responsibility Directive */}
+                            <div className="space-y-4">
+                              <p className="text-[13px] text-gray-300 font-mono uppercase leading-relaxed">
+                                The Customer User is <span className="text-white font-black italic underline decoration-green-500/30 underline-offset-4">solely responsible</span> for the following operational parameters:
+                              </p>
+
+                              {/* Responsibility Checklist */}
+                              <div className="grid grid-cols-1 gap-3 pt-2">
+                                {[
+                                  "Designating the Systems",
+                                  "Inviting Security Researchers as part of its Private Programs",
+                                  "Regularly reviewing and maintaining updated the list of the Systems to ensure the Customer is duly authorized to have the Systems tested and monitored"
+                                ].map((text, i) => (
+                                  <div key={i} className="flex items-start gap-4 p-4 bg-black/40 border border-white/5 rounded-2xl group/item hover:border-green-500/30 transition-all">
+                                    <div className="mt-1 flex items-center justify-center w-5 h-5 rounded bg-green-500/10 border border-green-500/20 text-green-500 font-mono text-[10px]">
+                                      0{i + 1}
+                                    </div>
+                                    <span className="text-[11px] text-gray-400 font-mono uppercase font-bold group-hover/item:text-gray-200 transition-colors leading-relaxed">
+                                      {text}
+                                    </span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* ASM SERVICE CONTEXT (Specialized Node) */}
+                            <div className="space-y-4 pt-4">
+                              <div className="flex items-center gap-2 text-green-500 font-mono text-[10px] uppercase tracking-[0.3em]">
+                                <Radio size={14} className="animate-pulse" /> Live_ASM_Service_Context
+                              </div>
+
+                              <div className="p-6 bg-black/60 border border-white/5 rounded-[2rem] relative overflow-hidden group/asm">
+                                <div className="absolute inset-0 bg-green-500/5 opacity-0 group-hover/asm:opacity-100 transition-opacity blur-2xl"></div>
+
+                                <ul className="space-y-4 relative z-10">
+                                  {[
+                                    "Findings generated into the Platform must be qualified by the Customer User (i.e., validated as Vulnerabilities)",
+                                    "The Customer User must accept or refuse the submitted Vulnerabilities"
+                                  ].map((point, idx) => (
+                                    <li key={idx} className="flex items-start gap-3">
+                                      <div className="w-1.5 h-1.5 bg-green-900 rounded-full mt-1.5 shrink-0"></div>
+                                      <p className="text-[11px] text-gray-400 font-mono uppercase leading-relaxed italic">
+                                        {point}
+                                      </p>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+
+                            {/* Compliance Footer Note */}
+                            <div className="pt-4 border-t border-white/5">
+                              <div className="flex items-center gap-2">
+                                <ShieldAlert size={12} className="text-gray-600" />
+                                <p className="text-[9px] text-gray-600 font-mono uppercase tracking-tighter italic">
+                                  Unauthorized system designation may result in legal suspension of the Program node.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -3199,7 +3321,7 @@ export default function PrivacyPolicyPage() {
                           "Users agree to indemnify, defend and hold harmless the Company, its officers, directors, employees, agents, and affiliates from any claims, damages, losses, liabilities, and all costs and expenses of defense, including attorneys' fees, resulting from:"
                         </p>
                         <div className="flex flex-wrap gap-3 pt-4">
-                          {["Violation of these GCU", "Breach of Warranty", "Violation of Digital Security Act, 2018"].map((node, i) => (
+                          {["A violation of these GCU", "A breach of any representation or warranty contained herein", "Violation of any Bangladesh laws including the Digital Security Act, 2018"].map((node, i) => (
                             <div key={i} className="px-4 py-2 bg-black border border-green-500/20 rounded-full text-[9px] font-mono text-green-500 uppercase font-black tracking-widest">
                               &gt; {node}
                             </div>
@@ -3210,26 +3332,750 @@ export default function PrivacyPolicyPage() {
 
                   </div>
                 </section>
+
+                {/* 10. FAIR USE OF COMPANY ASSETS */}
+                <section id="changes" className="scroll-mt-32">
+                  <div className="flex items-center gap-4 mb-10">
+                    <div className="p-3 bg-green-500/10 rounded-2xl text-green-500 border border-green-500/20 shadow-[0_0_20px_rgba(34,197,94,0.1)]">
+                      <Zap size={24} />
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter italic">
+                      10. FAIR USE OF COMPANY ASSETS
+                    </h2>
+                  </div>
+
+                  <div className="ml-0 md:ml-6 space-y-12 pl-0 md:pl-6 border-l-0 md:border-l border-green-500/20">
+
+                    {/* 10.1 Protection of Company Reputation */}
+                    <div className="space-y-6">
+                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0">
+                        <ShieldCheck size={16} className="text-green-500" /> 10.1 Protection of Company Reputation
+                      </h4>
+                      <div className="p-6 md:p-10 bg-zinc-950/60 border border-white/5 rounded-[2rem] md:rounded-[3rem] relative overflow-hidden group">
+
+                        {/* CONFIDENTIAL Watermark */}
+                        <div className="absolute top-0 right-0 p-6 opacity-[0.03] select-none pointer-events-none">
+                          <span className="text-[60px] md:text-[100px] font-black font-mono tracking-tighter text-white">CONFIDENTIAL</span>
+                        </div>
+
+                        <div className="relative z-10 space-y-8">
+                          <p className="text-[12px] md:text-[13px] text-gray-300 font-mono uppercase leading-relaxed italic border-b border-white/5 pb-6">
+                            "Users acknowledge that the Company's <span className="text-white font-bold">reputation, goodwill, and Customer/User base</span> are valuable business assets."
+                          </p>
+
+                          <div className="space-y-4">
+                            <p className="text-[11px] text-gray-500 font-mono uppercase tracking-widest">Accordingly, Users agree not to:</p>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div className="p-6 bg-black/40 border border-white/5 rounded-2xl group/item hover:border-red-500/30 transition-all">
+                                <div className="flex gap-4">
+                                  <span className="text-red-900 font-mono text-xs font-black pt-1">[01]</span>
+                                  <p className="text-[11px] text-gray-400 font-mono uppercase leading-relaxed font-bold group-hover/item:text-white transition-colors">
+                                    Represent themselves as an <span className="text-red-500 italic">agent, employee, or affiliate</span> of the Company outside the scope of their engagement.
+                                  </p>
+                                </div>
+                              </div>
+
+                              <div className="p-6 bg-black/40 border border-white/5 rounded-2xl group/item hover:border-red-500/30 transition-all">
+                                <div className="flex gap-4">
+                                  <span className="text-red-900 font-mono text-xs font-black pt-1">[02]</span>
+                                  <p className="text-[11px] text-gray-400 font-mono uppercase leading-relaxed font-bold group-hover/item:text-white transition-colors">
+                                    Use the Company's <span className="text-red-500 italic">name, brand, logo</span>, or any proprietary information to solicit business for personal or third-party gain without prior written consent.
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 10.2 Lawful Competition */}
+                    <div className="space-y-6">
+                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0">
+                        <Scale size={16} className="text-green-500" /> 10.2 Lawful Competition Framework
+                      </h4>
+                      <div className="p-8 bg-green-500/5 border border-green-500/10 rounded-[2.5rem] md:rounded-[3rem] relative overflow-hidden group">
+                        <div className="relative z-10">
+                          <p className="text-[12px] md:text-[13px] text-gray-300 font-mono uppercase leading-relaxed italic">
+                            "Nothing in this clause shall prevent Users from engaging in <span className="text-white font-bold underline decoration-green-500/30">lawful and fair competition</span> or unreasonably restrict their ability to conduct business or provide services..."
+                          </p>
+
+                          <div className="mt-8 p-6 bg-black/60 border border-white/5 rounded-2xl border-l-2 border-l-green-600">
+                            <p className="text-[10px] md:text-[11px] text-gray-500 font-mono uppercase leading-relaxed tracking-tight">
+                              <span className="text-green-500 font-black mr-2">Condition:</span>
+                              Provided such activities do not involve the <span className="text-white">appropriation and/or misuse</span> of the Company's reputation, assets, expertise or proprietary/confidential information.
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Background Watermark */}
+                        <div className="absolute -bottom-6 -right-6 opacity-[0.02] pointer-events-none group-hover:opacity-[0.05] transition-opacity duration-1000">
+                          <Briefcase size={200} />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Final Compliance Check Note */}
+                    <div className="pt-4 flex items-center gap-3 px-4 md:px-0">
+                      <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                      <p className="text-[9px] font-mono text-gray-600 uppercase tracking-widest">
+                        Fair Use Policy Version 1.0 // Authorization Code: BC-FAIR-2026
+                      </p>
+                    </div>
+
+                  </div>
+                </section>
+
+                {/* 11. COMPLIANCE & REGULATORY PROTOCOL */}
+                <section id="contact" className="scroll-mt-32 relative">
+                  {/* Section Watermark */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none select-none font-mono text-[80px] md:text-[120px] font-black leading-none -rotate-12 whitespace-nowrap z-0">
+                    CONFIDENTIAL
+                  </div>
+
+                  <div className="flex items-center gap-4 mb-10 relative z-10">
+                    <div className="p-3 bg-green-500/10 rounded-2xl text-green-500 border border-green-500/20 shadow-[0_0_20px_rgba(34,197,94,0.1)]">
+                      <Scale size={24} />
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter italic leading-none">
+                      11. Regulatory Compliance
+                    </h2>
+                  </div>
+
+                  <div className="ml-0 md:ml-6 space-y-12 pl-0 md:pl-6 border-l-0 md:border-l border-green-500/20 relative z-10">
+
+                    {/* 11.1 Sanctions Compliance */}
+                    <div className="space-y-6">
+                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0">
+                        <Globe size={16} className="text-green-500" /> 11.1 Sanctions Compliance
+                      </h4>
+                      <div className="p-6 md:p-8 bg-zinc-950/60 border border-white/5 rounded-[2rem] md:rounded-[3rem] relative overflow-hidden group">
+                        <p className="text-[12px] md:text-[13px] text-gray-300 font-mono uppercase leading-relaxed italic border-b border-white/5 pb-6">
+                          "Users may <span className="text-red-500 font-black italic">not use any of the Services</span> if they are the subject or the target of any economic or financial sanctions imposed, administered or enforced by:"
+                        </p>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6">
+                          {[
+                            { name: "The Government of Bangladesh", icon: <Building size={14} /> },
+                            { name: "United Nations Security Council", icon: <ShieldAlert size={14} /> },
+                            { name: "Relevant International Bodies", icon: <Globe size={14} /> }
+                          ].map((item, i) => (
+                            <div key={i} className="p-4 bg-black/40 border border-white/5 rounded-2xl group/item hover:border-green-500/20 transition-all">
+                              <div className="text-green-900 group-hover/item:text-green-500 mb-3 transition-colors">
+                                {item.icon}
+                              </div>
+                              <p className="text-[10px] text-gray-500 font-mono uppercase font-black leading-tight">{item.name}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 11.2 & 11.3 AML & Regulatory Authorities Grid */}
+                    <div className="grid grid-cols-1 gap-6">
+                      {/* 11.2 Anti-Money Laundering */}
+                      <div className="p-8 bg-zinc-900/50 border border-white/5 rounded-[2.5rem] space-y-6">
+                        <h4 className="text-white font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                          <Landmark size={14} className="text-green-500" /> 11.2 Anti-Money Laundering
+                        </h4>
+                        <p className="text-[11px] text-gray-500 font-mono uppercase tracking-widest leading-relaxed">
+                          Users must strictly comply with:
+                        </p>
+                        <ul className="space-y-3">
+                          {[
+                            "The Money Laundering Prevention Act, 2012 (as amended)",
+                            "The Anti-Terrorism Act, 2009 (as amended)",
+                            "Bangladesh Financial Intelligence Unit (BFIU) guidelines",
+                            "Bangladesh Bank directives"
+                          ].map((law, i) => (
+                            <li key={i} className="flex items-center gap-3 text-[10px] text-gray-400 font-mono uppercase italic border-b border-white/5 pb-2">
+                              <div className="w-1 h-1 bg-green-500 rounded-full"></div> {law}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* 11.3 Regulatory Compliance */}
+                      <div className="p-8 bg-zinc-900/50 border border-white/5 rounded-[2.5rem] space-y-6">
+                        <h4 className="text-white font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                          <Building2 size={14} className="text-green-500" /> 11.3 Regulatory Compliance
+                        </h4>
+                        <p className="text-[11px] text-gray-500 font-mono uppercase tracking-widest leading-relaxed">
+                          Users must comply with all regulations issued by:
+                        </p>
+                        <div className="grid grid-cols-2 gap-3">
+                          {[
+                            "Bangladesh Telecommunication Regulatory Commission (BTRC)", "Bangladesh Bank", "Bangladesh Computer Council (BCC)", "Bangladesh Computer Security Incident Response Team (BGD e-GOV CIRT)", "Any other relevant regulatory authority"
+                          ].map((auth, i) => (
+                            <div key={i} className="p-3 bg-black/40 border border-white/5 rounded-xl text-center">
+                              <p className="text-[10px] text-green-500 font-black uppercase font-mono">{auth}</p>
+                            </div>
+                          ))}
+                        </div>
+                        <p className="text-[9px] text-gray-600 font-mono uppercase italic">Any other relevant regulatory authority in Bangladesh.</p>
+                      </div>
+                    </div>
+
+                    {/* 11.4 Digital Security Compliance (The Most Important Section) */}
+                    <div className="space-y-6">
+                      <h4 className="text-red-500 font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0">
+                        <Gavel size={16} /> 11.4 Digital Security Compliance (DSA 2018)
+                      </h4>
+                      <div className="p-8 bg-red-950/10 border border-red-500/20 rounded-[3rem] relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 p-8 opacity-10 rotate-12">
+                          <ShieldAlert size={140} className="text-red-500" />
+                        </div>
+                        <div className="relative z-10 space-y-6">
+                          <p className="text-[12px] md:text-[13px] text-gray-300 font-mono uppercase leading-relaxed font-bold border-b border-red-500/10 pb-4">
+                            All users must <span className="text-red-500 font-black italic">strictly comply</span> with the Digital Security Act, 2018, including but not limited to:
+                          </p>
+
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                            {[
+                              { sec: "Section 21", desc: "No incitement to commit offences" },
+                              { sec: "Section 25", desc: "No transmission of offensive or false info" },
+                              { sec: "Section 26", desc: "Proper handling of personal information" },
+                              { sec: "Section 29", desc: "No publication of defamatory info" },
+                              { sec: "Section 31", desc: "No deterioration of law and order" },
+                              { sec: "Section 32", desc: "No offenses relating to State security" },
+                              { sec: "Section 35-37", desc: "Authorization for hacking & system access" }
+                            ].map((item, i) => (
+                              <div key={i} className="flex gap-4 p-4 bg-black/60 border border-red-500/10 rounded-2xl group/item hover:border-red-500/40 transition-all">
+                                <span className="text-red-500 font-mono text-[10px] font-black underline shrink-0 pt-0.5">{item.sec}</span>
+                                <p className="text-[10px] text-gray-400 font-mono uppercase font-bold group-hover/item:text-white transition-colors">{item.desc}</p>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Critical Warning Footer */}
+                          <div className="mt-8 p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
+                            <div className="flex items-center gap-3">
+                              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_8px_#ef4444]"></div>
+                              <p className="text-[10px] text-red-500 font-mono uppercase font-black tracking-widest leading-relaxed">
+                                CRITICAL: Unauthorized access or misuse of organization assets will be prosecuted under Bangladesh cyber law jurisdictions.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </section>
+
+                {/* 12. GOVERNING LAW AND JURISDICTION */}
+                <section id="transfer" className="scroll-mt-32 relative">
+                  {/* Background Section Watermark */}
+                  <div className="absolute top-0 right-0 opacity-[0.02] pointer-events-none select-none font-mono text-[80px] md:text-[100px] font-black leading-none -rotate-12 translate-x-10">
+                    JURISDICTION_BD
+                  </div>
+
+                  <div className="flex items-center gap-4 mb-10 relative z-10">
+                    <div className="p-3 bg-green-500/10 rounded-2xl text-green-500 border border-green-500/20 shadow-[0_0_20px_rgba(34,197,94,0.1)]">
+                      <Gavel size={24} />
+                    </div>
+                    <h2 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter italic">
+                      12. GOVERNING LAW AND JURISDICTION
+                    </h2>
+                  </div>
+
+                  <div className="ml-0 md:ml-6 space-y-12 pl-0 md:pl-6 border-l-0 md:border-l border-green-500/20 relative z-10">
+
+                    {/* 12.1 Governing Law */}
+                    <div className="space-y-6">
+                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0">
+                        <Scale size={16} className="text-green-500" /> 12.1 Governing Law
+                      </h4>
+                      <div className="p-6 md:p-10 bg-zinc-950/60 border border-white/5 rounded-[1.5rem] md:rounded-[3rem] relative overflow-hidden group">
+                        <p className="text-[12px] md:text-[13px] text-gray-300 font-mono uppercase leading-relaxed italic border-b border-white/5 pb-6">
+                          "These GCU are governed by the laws of the <span className="text-white font-bold underline decoration-green-500/30">People's Republic of Bangladesh</span>, including but not limited to:"
+                        </p>
+
+                        {/* Laws Grid - Responsive */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-8">
+                          {[
+                            "The Contract Act, 1872",
+                            "The Information and Communication Technology Act, 2006",
+                            "The Digital Security Act, 2018",
+                            "The Code of Civil Procedure, 1908",
+                            "The Arbitration Act, 2001",
+                            "Any other applicable laws of Bangladesh"
+                          ].map((law, i) => (
+                            <div key={i} className="flex items-center gap-3 p-4 bg-black/40 border border-white/5 rounded-2xl group/item hover:border-green-500/30 transition-all">
+                              <div className="w-1.5 h-1.5 bg-green-900 group-hover/item:bg-green-500 rounded-full transition-colors shadow-[0_0_5px_#22c55e]"></div>
+                              <p className="text-[10px] text-gray-500 font-mono uppercase font-black tracking-tighter group-hover/item:text-white transition-colors">{law}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 12.2 & 12.3 Dispute Resolution & Arbitration */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                      {/* 12.2 Dispute Resolution */}
+                      <div className="p-8 bg-zinc-900/50 border border-white/5 rounded-[1.5rem] space-y-6">
+                        <h4 className="text-white font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                          <Handshake size={14} className="text-green-500" /> 12.2 Dispute Resolution
+                        </h4>
+                        <p className="text-[11px] text-gray-400 font-mono uppercase leading-relaxed italic border-l-2 border-green-900/40 pl-6">
+                          "If a dispute arises between a User and the Company and/or each other, each of them shall <span className="text-white font-bold">endeavor to settle amicably</span> and work in <span className="text-green-500 underline underline-offset-4">good faith</span> to resolve the dispute to the satisfaction of all parties."
+                        </p>
+                      </div>
+
+                      {/* 12.3 Arbitration */}
+                      <div className="p-8 bg-zinc-900/50 border border-white/5 rounded-[1.5rem] space-y-6">
+                        <h4 className="text-white font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                          <ShieldCheck size={14} className="text-green-500" /> 12.3 Arbitration Protocol
+                        </h4>
+                        <p className="text-[11px] text-gray-400 font-mono uppercase leading-relaxed">
+                          Disputes not resolved amicably shall be referred to arbitration under:
+                        </p>
+                        <div className="space-y-3">
+                          <div className="p-3 bg-black/60 rounded-xl border border-white/5">
+                            <p className="text-[10px] text-green-500 font-mono uppercase font-bold tracking-widest">Act: Arbitration Act, 2001 (Bangladesh)</p>
+                          </div>
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="p-3 bg-black/60 rounded-xl border border-white/5 text-center">
+                              <p className="text-[9px] text-gray-600 uppercase">Place</p>
+                              <p className="text-[10px] text-white font-bold uppercase">Dhaka, BD</p>
+                            </div>
+                            <div className="p-3 bg-black/60 rounded-xl border border-white/5 text-center">
+                              <p className="text-[9px] text-gray-600 uppercase">Language</p>
+                              <p className="text-[10px] text-white font-bold uppercase">EN / BN</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 12.4 & 12.5 Court Jurisdiction & Language */}
+                    <div className="space-y-6">
+                      <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-6">
+                        {/* 12.4 Court Jurisdiction */}
+                        <div className="p-8 bg-white/5 border border-white/10 rounded-[1.5rem] relative overflow-hidden group">
+                          <h4 className="text-white font-black text-xs uppercase tracking-widest flex items-center gap-2 mb-4">
+                            <MapPin size={14} className="text-green-500" /> 12.4 Court Jurisdiction
+                          </h4>
+                          <p className="text-[11px] md:text-[12px] text-gray-400 font-mono uppercase leading-relaxed">
+                            If arbitration is not opted for, any dispute shall be subject to the <span className="text-white font-bold underline decoration-green-500/50">exclusive jurisdiction</span> of the courts of <span className="text-green-500">Dhaka, Bangladesh</span>, and the parties hereby irrevocably submit to said jurisdiction of those courts for these purposes.
+                          </p>
+                        </div>
+
+                        {/* 12.5 Language */}
+                        <div className="p-8 bg-green-500/5 border border-green-500/10 rounded-[1.5rem] relative flex flex-col justify-center overflow-hidden group">
+                          <div className="absolute top-0 right-0 p-4 opacity-10">
+                            <Globe size={40} className="text-green-500" />
+                          </div>
+                          <h4 className="text-white font-black text-xs uppercase tracking-widest flex items-center gap-2 mb-4">
+                            <MessageSquare size={14} className="text-green-500" /> 12.5 Language
+                          </h4>
+                          <p className="text-[10px] text-gray-500 font-mono uppercase leading-relaxed">
+                            In case of any conflict between English and Bengali versions, the <span className="text-green-500 font-bold italic">English version shall prevail</span>.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Final Regulatory Footer Note */}
+                    <div className="pt-6 border-t border-white/5 flex items-center gap-3">
+                      <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_#22c55e]"></div>
+                      <p className="text-[9px] font-mono text-gray-600 uppercase tracking-widest">
+                        Governing Law Protocol Version 1.0 // Auth Node: BC-LEG-JUR-2026
+                      </p>
+                    </div>
+
+                  </div>
+                </section>
+
+                {/* 13. GENERAL PROVISIONS PROTOCOL */}
+                <section id="changes" className="scroll-mt-32 relative">
+                  {/* Background Section Watermark */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none select-none font-mono text-[80px] md:text-[120px] font-black leading-none -rotate-12 whitespace-nowrap z-0">
+                    GENERAL_PROVISIONS
+                  </div>
+
+                  <div className="flex items-center gap-4 mb-10 relative z-10">
+                    <div className="p-3 bg-green-500/10 rounded-2xl text-green-500 border border-green-500/20 shadow-[0_0_20px_rgba(34,197,94,0.1)]">
+                      <Cpu size={24} />
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter italic">
+                      13. General Provisions
+                    </h2>
+                  </div>
+
+                  <div className="ml-0 md:ml-6 space-y-12 pl-0 md:pl-6 border-l-0 md:border-l border-green-500/20 relative z-10">
+
+                    {/* 13.1 Force Majeure */}
+                    <div className="space-y-6">
+                      <h4 className="text-white font-bold text-sm uppercase flex items-center gap-2 tracking-widest px-4 md:px-0">
+                        <ShieldAlert size={16} className="text-green-500" /> 13.1 Force Majeure
+                      </h4>
+                      <div className="p-6 md:p-10 bg-zinc-950/60 border border-white/5 rounded-[1.5rem] md:rounded-[3rem] relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 p-6 opacity-[0.05] pointer-events-none font-mono text-[10px] font-black uppercase tracking-widest">
+                          CONFIDENTIAL
+                        </div>
+                        <div className="relative z-10 space-y-6">
+                          <p className="text-[12px] md:text-[13px] text-gray-300 font-mono uppercase leading-relaxed italic border-b border-white/5 pb-6">
+                            Neither party shall be liable to the other for any delay or non-performance of its obligations under these GCU arising from a Force Majeure event. CONFIDENTIAL Force Majeure shall include events beyond the reasonable control of the affected party, including but not limited to:
+                          </p>
+                          <div className="space-y-4">
+                            <p className="text-[10px] text-green-700 font-mono uppercase tracking-[0.2em] font-black">Event_Classification_List:</p>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                              {[
+                                "Acts of God", "Natural disasters (floods, earthquakes, cyclones)", "War, hostilities, terrorism",
+                                "Riots, civil commotion", "Government actions or orders", "National strikes",
+                                "Pandemics or epidemics", "Failure of telecommunications or power networks", "Cyber attacks affecting critical infrastructure"
+                              ].map((item, i) => (
+                                <div key={i} className="flex items-center gap-2 p-3 bg-black/40 border border-white/5 rounded-xl group/item hover:border-green-500/20 transition-all">
+                                  <div className="w-1 h-1 bg-green-900 group-hover/item:bg-green-500 rounded-full"></div>
+                                  <p className="text-[10px] text-gray-500 font-mono uppercase tracking-tighter group-hover/item:text-white transition-colors">{item}</p>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="p-5 bg-red-500/5 border border-red-500/10 rounded-2xl">
+                            <p className="text-[11px] text-gray-400 font-mono uppercase leading-relaxed italic">
+                              <span className="text-red-500 font-bold mr-2">&gt; OBLIGATION:</span>
+                              The affected party must immediately notify the other party and shall make every effort to reduce as much as possible the harmful effects resulting from this situation. Each party shall bear all costs incumbent upon it resulting from the occurrence of the Force Majeure event.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 13.2 Survival & 13.3 Rules on Evidence Grid */}
+                    <div className="grid grid-cols-1 gap-8">
+                      {/* 13.2 Survival */}
+                      <div className="p-8 bg-zinc-900/50 border border-white/5 rounded-[1.5rem] space-y-6 relative overflow-hidden group">
+                        <h4 className="text-white font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                          <ShieldCheck size={14} className="text-green-500" /> 13.2 Survival
+                        </h4>
+                        <p className="text-[11px] text-gray-400 font-mono uppercase leading-relaxed italic">
+                          In the event of termination or early termination of these GCU for any reason, or
+                          discontinuance or cancellation of the Services, the Platform or a User account, any provision or condition of these GCU intended to survive such termination shall survive and shall not affect the validity of the rights and obligations set forth in the sections entitled:
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {["Personal Data", "Confidentiality", "Intellectual Property", "Liability", "Governing Law and Jurisdiction", "Any other provision of these GCU which, by their nature or by virtue of specific provisions, extend beyond the end or expiry of these GCU"].map((tag, i) => (
+                            <span key={i} className="px-3 py-1 bg-black border border-white/10 text-gray-500 text-[9px] font-mono rounded uppercase text-green-500">{tag}</span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* 13.3 Rules on Evidence */}
+                      {/* 13.3 Rules on Evidence */}
+                      <div className="p-8 bg-zinc-900/50 border border-white/5 rounded-[1.5rem] space-y-8 relative overflow-hidden group hover:border-green-500/20 transition-all duration-500">
+                        {/* Background Decoration */}
+                        <div className="absolute top-0 right-0 p-4 opacity-[0.02] pointer-events-none group-hover:opacity-[0.05] transition-opacity">
+                          <Gavel size={150} className="text-green-500" />
+                        </div>
+
+                        <div className="relative z-10 space-y-6">
+                          {/* Section Header */}
+                          <h4 className="text-white font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                            <FileCode size={14} className="text-green-500" />
+                            13.3 Rules on Evidence Protocol
+                          </h4>
+
+                          {/* Intro Directive */}
+                          <p className="text-[12px] text-gray-300 font-mono uppercase leading-relaxed italic border-b border-white/5 pb-4">
+                            "In the event of a dispute, <span className="text-white">Users and the Company agree</span> that the following data streams shall be recognized as admissible evidence:"
+                          </p>
+
+                          {/* Evidence Categories Grid */}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {[
+                              { title: "User Interactions", items: "Clicks and double clicks" },
+                              { title: "Time Verification", items: "Timestamp tokens and digitally certified dates" },
+                              { title: "Account Activity", items: "Connection data relating to actions carried out from the account" },
+                              { title: "Digital Identity", items: "Certificates and electronic signatures transmitted" }
+                            ].map((item, i) => (
+                              <div key={i} className="p-4 bg-black/40 border border-white/5 rounded-2xl group/item hover:border-green-900/30 transition-all">
+                                <h6 className="text-green-900 font-mono text-[9px] uppercase font-black mb-2 tracking-tighter group-hover/item:text-green-500">{item.title}</h6>
+                                <p className="text-[10px] text-gray-500 font-mono uppercase leading-relaxed font-bold">{item.items}</p>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Legal Admissibility Block */}
+                          <div className="p-6 bg-green-500/5 border border-green-500/20 rounded-[1.5rem] relative overflow-hidden">
+                            {/* Pulse Effect */}
+                            <div className="absolute top-0 right-0 p-4">
+                              <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_#22c55e]"></div>
+                            </div>
+
+                            <div className="space-y-4">
+                              <p className="text-[11px] md:text-[12px] text-gray-300 font-mono uppercase leading-relaxed">
+                                Shall be <span className="text-white font-black underline decoration-green-500/40 underline-offset-4">admissible in court</span> under the:
+                              </p>
+
+                              <div className="flex flex-wrap gap-4">
+                                <span className="px-3 py-1 bg-black border border-green-900/30 text-green-500 text-[9px] font-black uppercase rounded">Evidence Act, 1872</span>
+                                <span className="px-3 py-1 bg-black border border-green-900/30 text-green-500 text-[9px] font-black uppercase rounded">ICT Act, 2006</span>
+                              </div>
+
+                              <p className="text-[11px] text-gray-400 font-mono uppercase leading-relaxed italic border-t border-white/5 pt-4">
+                                "...and shall prove the <span className="text-white">data and facts</span> contained therein as well as the <span className="text-white">signatures and authentication procedures</span> they express."
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Bottom Visual Terminal Status */}
+                        <div className="pt-2 flex items-center gap-2">
+                          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-green-900/30 to-transparent"></div>
+                          <span className="text-[8px] font-mono text-gray-700 uppercase tracking-widest">Digital_Admissibility: Verified</span>
+                          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-green-900/30 to-transparent"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 13.4 Electronic Records & 13.5 Hyperlinks */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                      {/* 13.4 Electronic Records */}
+                      <div className="p-8 bg-zinc-950 border border-white/5 rounded-[1.5rem] relative overflow-hidden">
+                        <div className="absolute top-0 right-0 p-4 opacity-10">
+                          <Terminal size={40} className="text-green-500" />
+                        </div>
+                        <h4 className="text-white font-black text-xs uppercase tracking-widest mb-4">13.4 Electronic Records</h4>
+                        <p className="text-[11px] text-gray-500 font-mono uppercase leading-relaxed">
+                          Electronic records maintained by the Company shall be deemed <span className="text-green-500">authentic</span> under Section 6A of the Evidence Act, 1872 (as inserted by the ICT Act, 2006) and shall be admissible as evidence.
+                        </p>
+                        <div className="mt-4 flex justify-end">
+                          <span className="text-[8px] font-mono text-zinc-700">CONFIDENTIAL_NODE_AUTH</span>
+                        </div>
+                      </div>
+
+                      {/* 13.5 Hypertext Links */}
+                      <div className="p-8 bg-zinc-950 border border-white/5 rounded-[1.5rem]">
+                        <h4 className="text-white font-black text-xs uppercase tracking-widest mb-4">13.5 Hypertext Links</h4>
+                        <p className="text-[11px] text-gray-500 font-mono uppercase leading-relaxed">
+                          The GCU may contain hypertext links to third-parties legal documents over which the
+                          Company has no control. The User acknowledges and accepts that the documents to which
+                          reference may be made through these links may be modified, amended and/or altered and
+                          such modification, amendment and/or alteration shall be opposable and enforceable toward the User.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* 13.6 Notices & 13.7 Severability */}
+                    <div className="space-y-6">
+                      <div className="p-8 bg-white/5 border border-white/10 rounded-[1.5rem] relative">
+                        <h4 className="text-white font-black text-xs uppercase tracking-widest mb-6 flex items-center gap-2">
+                          <Mail size={14} className="text-green-500" /> 13.6 Communication of Notices
+                        </h4>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                          <div className="space-y-4">
+                            <p className="text-[11px] text-gray-400 font-mono uppercase">Notices shall be given in writing by:</p>
+                            <ul className="text-[10px] text-gray-500 font-mono space-y-2 uppercase italic">
+                              <li>• Registered letter with acknowledgement</li>
+                              <li>• E-mail with acknowledgement of receipt</li>
+                              <li>• Any other means where receipt is provable</li>
+                            </ul>
+                          </div>
+                          <div className="p-4 bg-black/60 rounded-2xl border border-white/5 flex items-center">
+                            <p className="text-[10px] text-gray-600 font-mono uppercase leading-relaxed">
+                              Official legal service may also follow the <span className="text-white">Code of Civil Procedure, 1908</span>.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {/* 13.7 Severability */}
+                        <div className="p-6 bg-zinc-900/40 border border-white/5 rounded-3xl">
+                          <h6 className="text-green-500 font-bold text-[10px] uppercase mb-2">13.7 Severability</h6>
+                          <p className="text-[9px] text-gray-500 font-mono uppercase leading-tight italic">If any provision of these GCU is found to be invalid, illegal or unenforceable by a court of
+                            competent jurisdiction in Bangladesh, the validity, legality and enforceability of the
+                            remaining provisions shall not be affected or impaired.</p>
+                        </div>
+                        {/* 13.8 Waiver */}
+                        <div className="p-6 bg-zinc-900/40 border border-white/5 rounded-3xl">
+                          <h6 className="text-green-500 font-bold text-[10px] uppercase mb-2">13.8 Waiver</h6>
+                          <p className="text-[9px] text-gray-500 font-mono uppercase leading-tight italic">No failure or delay by either party in exercising any right, power or privilege under these GCU shall operate as a waiver thereof, nor shall any single or partial exercise preclude any further exercise or the exercise of any other right, power or privilege.</p>
+                        </div>
+                        {/* 13.9 Assignment */}
+                        <div className="p-6 bg-zinc-900/40 border border-white/5 rounded-3xl relative overflow-hidden">
+                          <h6 className="text-green-500 font-bold text-[10px] uppercase mb-2">13.9 Assignment</h6>
+                          <p className="text-[9px] text-gray-500 font-mono uppercase leading-tight italic">Users may not assign, transfer or delegate their rights or obligations under these GCU without the prior written consent of the Company. The Company may assign its rights and obligations without User consent.</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 13.10 Entire Agreement & 13.11 Amendment */}
+                    <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-8">
+                      <div className="p-8 bg-zinc-950 border border-white/5 rounded-[1.5rem]">
+                        <h4 className="text-white font-black text-xs uppercase tracking-widest mb-4">13.10 Entire Agreement</h4>
+                        <p className="text-[11px] text-gray-400 font-mono uppercase leading-relaxed italic border-l-2 border-green-900 pl-6">
+                          These GCU constitute the entire agreement between the parties and supersede all prior or contemporaneous understandings, agreements, representations and warranties, both written and oral, with respect to the subject matter.
+                        </p>
+                      </div>
+                      <div className="p-8 bg-green-500/5 border border-green-500/10 rounded-[1.5rem] relative">
+                        <div className="absolute top-0 right-0 p-4 opacity-10">
+                          <History size={30} className="text-green-500" />
+                        </div>
+                        <h4 className="text-white font-black text-xs uppercase tracking-widest mb-4">13.11 Amendment Rights</h4>
+                        <p className="text-[10px] text-gray-400 font-mono uppercase leading-relaxed">
+                          The Company reserves the right to amend these GCU at any time. Users will be notified of changes and must accept the amended GCU to continue using the Platform.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* 13.12 Government Compliance (Final Tactical Node) */}
+                    <div className="p-10 bg-red-950/10 border border-red-500/20 rounded-[1.5rem] relative overflow-hidden group">
+                      <div className="absolute top-0 right-0 p-6 opacity-5"><Gavel size={100} /></div>
+                      <div className="relative z-10 space-y-6">
+                        <div className="flex items-center gap-4">
+                          <div className="p-3 bg-red-500/20 rounded-2xl text-red-500 border border-red-500/30 animate-pulse">
+                            <ShieldAlert size={24} />
+                          </div>
+                          <h4 className="text-[8px] md:text-[18px] lg:text-[20px] font-black text-white uppercase italic tracking-tighter">13.12 Government Compliance</h4>
+                        </div>
+                        <p className="text-[11px] text-gray-400 font-mono uppercase leading-relaxed">
+                          The Company reserves the right to modify Platform/Services to comply with:
+                        </p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          {[
+                            "Orders from Bangladesh Telecommunication Regulatory Commission (BTRC)", "Directives from Bangladesh Government",
+                            "Court orders", "Any regulatory requirements"
+                          ].map((node, i) => (
+                            <div key={i} className="flex items-center gap-3 p-3 bg-black/60 border border-red-500/10 rounded-xl">
+                              <div className="w-1 h-1 bg-red-600 rounded-full shadow-[0_0_5px_#dc2626]"></div>
+                              <span className="text-[10px] font-mono text-red-400 uppercase font-black tracking-widest italic">{node}</span>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="pt-4 border-t border-white/5">
+                          <span className="text-[9px] font-mono text-gray-600 uppercase tracking-widest">SYSTEM_PROTOCOL_AUTHORIZED // 2026</span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </section>
               </div>
 
               {/* --- 14. CONTACT INFORMATION (Final Footer) --- */}
-              <div id="contact" className="mt-40 p-12 bg-white/5 border border-white/10 rounded-[3.5rem] text-center backdrop-blur-xl relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-green-500/5 to-transparent"></div>
-                <div className="relative z-10 space-y-6">
-                  <div className="w-16 h-16 bg-green-500/10 rounded-3xl flex items-center justify-center text-green-500 mx-auto mb-6 border border-green-500/20">
-                    <Mail size={32} />
-                  </div>
-                  <h2 className="text-3xl font-black text-white uppercase italic tracking-widest leading-none">Command Engagement</h2>
-                  <p className="text-gray-500 font-mono text-[10px] uppercase tracking-widest max-w-lg mx-auto leading-relaxed">
-                    ZeroDay Test Level 04, 15 Indira Road, Farmgate, Dhaka 1215 Bangladesh <br />
-                    <span className="text-green-500 mt-4 block">support@zerodaytest.com | 01234555333</span>
-                  </p>
-
-                  <div className="pt-8 border-t border-white/5 mt-10">
-                    <p className="text-[8px] font-mono text-gray-700 uppercase tracking-[0.5em]">LAST_UPDATED: 02.18.2026 // SYSTEM_STABLE</p>
-                  </div>
+              {/* 14. CONTACT INFORMATION & FINAL NOTICE */}
+              <section id="contact" className="scroll-mt-32 relative">
+                {/* Background Section Watermark */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none select-none font-mono text-[80px] md:text-[120px] font-black leading-none -rotate-12 whitespace-nowrap z-0">
+                  COMMAND_ENGAGEMENT
                 </div>
-              </div>
+
+                <div className="flex items-center gap-4 mb-10 relative z-10">
+                  <div className="p-3 bg-green-500/10 rounded-2xl text-green-500 border border-green-500/20 shadow-[0_0_20px_rgba(34,197,94,0.1)]">
+                    <Mail size={24} />
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter italic">
+                    14. Contact Information
+                  </h2>
+                </div>
+
+                <div className="ml-0 md:ml-6 space-y-12 pl-0 md:pl-6 border-l-0 md:border-l border-green-500/20 relative z-10">
+
+                  {/* 14.1 Main Contact Node */}
+                  <div className="p-8 md:p-12 bg-zinc-950/60 border border-white/5 rounded-[2.5rem] md:rounded-[3.5rem] relative overflow-hidden group">
+                    <p className="text-[12px] md:text-[13px] text-gray-300 font-mono uppercase leading-relaxed mb-10 italic">
+                      "For any questions or concerns regarding these GCU, please contact our command center through the following channels:"
+                    </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      {/* Address Node */}
+                      <div className="flex gap-5 items-start p-6 bg-black/40 border border-white/5 rounded-3xl group/item hover:border-green-500/30 transition-all">
+                        <div className="p-3 bg-green-500/5 rounded-2xl text-green-500">
+                          <MapPin size={20} />
+                        </div>
+                        <div>
+                          <h6 className="text-green-900 font-mono text-[9px] uppercase font-black mb-1">Operational_HQ</h6>
+                          <p className="text-[11px] text-gray-300 font-mono uppercase font-bold leading-relaxed">
+                            ZeroDay Test Level 04, 15 Indira Road, Farmgate, Dhaka 1215 Bangladesh
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Contact Details Node */}
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-4 p-4 bg-black/40 border border-white/5 rounded-2xl">
+                          <Mail size={16} className="text-green-700" />
+                          <p className="text-[11px] text-gray-400 font-mono uppercase tracking-widest">
+                            Email: <span className="text-white font-bold select-all">support@zerodaytest.com</span>
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-4 p-4 bg-black/40 border border-white/5 rounded-2xl">
+                          <Phone size={16} className="text-green-700" />
+                          <p className="text-[11px] text-gray-400 font-mono uppercase tracking-widest">
+                            Phone: <span className="text-white font-bold select-all">01234555333</span>
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-4 p-4 bg-black/40 border border-white/5 rounded-2xl">
+                          <Globe size={16} className="text-green-700" />
+                          <p className="text-[11px] text-gray-400 font-mono uppercase tracking-widest">
+                            Website: <Link href="https://zerodaytest.com" className="text-green-500 hover:underline">https://zerodaytest.com</Link>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* IMPORTANT NOTICE TO ALL USERS (The Red Protocol) */}
+                  <div className="p-8 md:p-12 bg-red-950/10 border-2 border-red-500/20 rounded-[3rem] md:rounded-[4rem] relative overflow-hidden group/notice">
+                    {/* Background Pulse Effect */}
+                    <div className="absolute inset-0 bg-red-500/5 opacity-0 group-hover/notice:opacity-100 transition-opacity duration-700"></div>
+
+                    <div className="relative z-10 space-y-8">
+                      <div className="flex items-center gap-4 border-b border-red-500/20 pb-6">
+                        <div className="p-3 bg-red-500 rounded-2xl text-black shadow-[0_0_30px_rgba(239,68,68,0.3)] animate-pulse">
+                          <ShieldAlert size={24} />
+                        </div>
+                        <h4 className="text-xl md:text-2xl font-black text-red-500 uppercase tracking-widest italic">
+                          IMPORTANT NOTICE TO ALL USERS
+                        </h4>
+                      </div>
+
+                      <div className="space-y-6">
+                        {/* General Acceptance */}
+                        <p className="text-[12px] md:text-[13px] text-gray-300 font-mono uppercase leading-relaxed font-black">
+                          By accepting these General Conditions of Use, you acknowledge that you have <span className="text-white underline decoration-red-500/50 underline-offset-4">read, understood, and agree</span> to be bound by all the terms and conditions set forth herein, including compliance with the <span className="text-red-500 font-black">Digital Security Act, 2018</span> and all other applicable laws of Bangladesh.
+                        </p>
+
+                        {/* Researcher Specific Warning */}
+                        <div className="p-6 bg-black/60 border border-red-500/20 rounded-2xl border-l-4 border-l-red-600">
+                          <p className="text-[11px] md:text-[12px] text-gray-400 font-mono uppercase leading-relaxed italic">
+                            "Security Researchers specifically acknowledge the <span className="text-red-500 font-bold">serious criminal penalties</span> for unauthorized hacking activities under the Digital Security Act, 2018 and agree to conduct all testing activities <span className="text-white font-bold underline decoration-white/20">strictly within the authorized scope</span> of approved Programs."
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Final Certification Badge */}
+                      <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-white/5">
+                        <div className="flex items-center gap-3">
+                          <CheckCircle size={16} className="text-green-500" />
+                          <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Acknowledgment Status: Mandatory</span>
+                        </div>
+                        <div className="flex items-center gap-2 px-4 py-2 bg-black border border-white/10 rounded-xl">
+                          <Calendar size={14} className="text-gray-600" />
+                          <p className="text-[9px] font-mono text-gray-600 uppercase tracking-tighter italic">
+                            Document last updated on: <span className="text-white font-bold">02/18/2026</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Final System Footer Message */}
+                  <div className="pt-10 flex flex-col items-center text-center space-y-4">
+                    <div className="flex gap-1">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        <div key={i} className="w-1 h-1 bg-green-900 rounded-full"></div>
+                      ))}
+                    </div>
+                    <p className="text-[8px] font-mono text-gray-700 uppercase tracking-[0.8em]">
+                      END_OF_DOCUMENT // BYTE_CAPSULE_SECURE_NODE
+                    </p>
+                  </div>
+
+                </div>
+              </section>
 
             </div>
           </motion.div>
