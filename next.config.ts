@@ -105,6 +105,15 @@ const nextConfig: NextConfig = {
     ],
   },
 
+  async rewrites() {
+    return [
+      {
+        source: '/proxy-api/:path*',
+        destination: 'https://zt.zerodaytest.com/api/:path*', 
+      },
+    ];
+  },
+
   async headers() {
     return [
       {
