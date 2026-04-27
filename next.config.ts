@@ -108,20 +108,14 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: '/proxy-api/:path*',
-        destination: 'https://zt.zerodaytest.com/api/:path*', 
+        source: '/api/public/:path*',
+        destination: 'https://zt.zerodaytest.com/api/public/:path*',
       },
     ];
   },
 
   async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: securityHeaders,
-      },
-    ];
+    return [{ source: "/(.*)", headers: securityHeaders }];
   },
 };
-
 export default nextConfig;

@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Clock, Calendar, ShieldCheck, Share2, Printer, Loader2 } from 'lucide-react';
 
-const BASE_URL = "https://zt.zerodaytest.com";
+const BASE_URL = "";
 
 export default function BlogDetailPage() {
   const { slug } = useParams();

@@ -18,7 +18,7 @@ export interface IByteCapsuleBlog {
   createdAt: string;
 }
 
-const BASE_URL = "https://zt.zerodaytest.com";
+const BASE_URL = "";
 
 export default function BlogListPage() {
   // ২. এখানেও নতুন ইন্টারফেস নামটি ব্যবহার করুন
