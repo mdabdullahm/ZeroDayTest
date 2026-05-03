@@ -169,7 +169,7 @@ const Footer = () => {
                   <Link href="https://www.facebook.com/share/1F2He1nY9Q/" className="text-gray-400 hover:text-white transition-all"><Facebook size={22} /></Link>
                   <Link href="https://x.com/Zer0day_t3st" className="text-gray-400 hover:text-white transition-all"><FaXTwitter size={22} /></Link>
                   <Link href="https://www.youtube.com/@HackerBhao" className="text-gray-400 hover:text-white transition-all"><Youtube size={22} /></Link>
-                  <Link href="https://discord.gg/F88eZM9bf" className="text-gray-400 hover:text-white transition-all"><FaDiscord size={22} /></Link>
+                  <Link href="https://discord.gg/sACeVx6jMQ" className="text-gray-400 hover:text-white transition-all"><FaDiscord size={22} /></Link>
                </div>
             </div>
 

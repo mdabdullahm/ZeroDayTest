@@ -36,7 +36,7 @@ const socialNodes = [
   { icon: <FaFacebookF size={16} />, href: "https://www.facebook.com/share/1F2He1nY9Q/" },
   { icon: <FaXTwitter size={16} />, href: "https://x.com/Zer0day_t3st" },
   { icon: <FaYoutube size={16} />, href: "https://www.youtube.com/@HackerBhao" },
-  { icon: <FaDiscord size={16} />, href: "https://discord.gg/F88eZM9bf" }
+  { icon: <FaDiscord size={16} />, href: "https://discord.gg/sACeVx6jMQ" }
 ];
 
 const ContactMethods = () => {
