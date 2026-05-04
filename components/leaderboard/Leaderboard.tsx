@@ -336,7 +336,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Trophy, User, Loader2, AlertCircle } from 'lucide-react';
 
 interface Leader {
@@ -353,128 +353,131 @@ const Leaderboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchLeaderboard = async () => {
-      try {
-        setLoading(true);
-        // রিরাইট পাথ ব্যবহার করা হচ্ছে (CORS সমাধান)
-        const response = await fetch('/api/public/leaderboard', {
-          cache: 'no-store'
-        });
+  // ফিল্টার স্টেট
+  const [mode, setMode] = useState<'current_year' | 'history'>('current_year');
+  const [year] = useState(2026);
+  const [quarter, setQuarter] = useState(1);
 
-        if (!response.ok) throw new Error("Mainframe connection lost.");
-
-        const data = await response.json();
-        
-        if (data && Array.isArray(data.leaders)) {
-          setLeaders(data.leaders);
-        }
-      } catch (err: any) {
-        console.error("Leaderboard Error:", err);
-        setError(err.message || "Failed to sync nodes.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchLeaderboard();
-  }, []);
-
+  // ১. পতাকার ইউআরএল পাওয়ার ফাংশন (এটি আগে থাকা জরুরি)
   const getFlagURL = (code: string | null) => {
     const countryCode = code ? code.toLowerCase() : "bd";
     return `https://flagcdn.com/w40/${countryCode}.png`;
   };
 
+  // ২. দেশের নাম পাওয়ার ফাংশন (এই ফাংশনটি আপনার কোডে মিসিং ছিল)
   const getCountryName = (code: string | null) => {
-    const countries: { [key: string]: string } = { "BD": "Bangladesh", "US": "USA" };
-    return code ? (countries[code.toUpperCase()] || "Global") : "Bangladesh";
+    const countries: { [key: string]: string } = { 
+        "BD": "Bangladesh", 
+        "US": "USA",
+        "IN": "India",
+        "GB": "UK" 
+    };
+    return code ? (countries[code.toUpperCase()] || "Global Researcher") : "Bangladesh";
   };
 
+  useEffect(() => {
+    const fetchLeaderboard = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const params = new URLSearchParams({
+          mode: mode,
+          year: year.toString(),
+          limit: "20"
+        });
+
+        if (mode === 'current_year') {
+          params.append('quarter', quarter.toString());
+        }
+
+        const response = await fetch(`/api/public/leaderboard?${params.toString()}`, {
+          cache: 'no-store'
+        });
+
+        if (!response.ok) throw new Error("Connection Failure.");
+
+        const data = await response.json();
+        if (data && Array.isArray(data.leaders)) {
+          setLeaders(data.leaders);
+        }
+      } catch (err: any) {
+        setError(err.message || "Failed to sync nodes.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLeaderboard();
+  }, [mode, quarter, year]);
+
   return (
-    <section className="relative py-16 bg-black overflow-hidden border-t border-green-500/5 min-h-[80vh] flex flex-col justify-center selection:bg-green-500 selection:text-black">
+    <section className="relative py-16 bg-black overflow-hidden border-t border-green-500/5 min-h-screen selection:bg-green-500 selection:text-black">
       
-      {/* Background Matrix Decor */}
       <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" 
            style={{ backgroundImage: 'linear-gradient(#10b981 1px, transparent 1px), linear-gradient(90deg, #10b981 1px, transparent 1px)', backgroundSize: '45px 45px' }}>
       </div>
 
-      <div className="max-w-full mx-auto px-6 lg:px-20 relative z-10 w-full">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-20 relative z-10 w-full">
         
+        {/* হেডার */}
+        <div className="flex flex-col items-center text-center mb-12">
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="flex items-center gap-2 text-green-500 font-mono text-[10px] mb-4 uppercase tracking-[0.4em]">
+            <Trophy size={14} /> [ GLOBAL_HALL_OF_FAME ]
+          </motion.div>
+          <h2 className="text-5xl lg:text-8xl font-black uppercase tracking-tighter leading-none text-white">
+            TOP <span className="text-green-500 italic">RESEARCHERS</span>
+          </h2>
+        </div>
+
+        {/* কন্ট্রোল বাটন */}
+        <div className="flex flex-wrap justify-center gap-4 mb-16">
+           <div className="bg-zinc-950 p-1 rounded-xl border border-white/5 flex gap-2">
+              <button onClick={() => setMode('current_year')} className={`px-6 py-2 rounded-lg font-mono text-[10px] uppercase ${mode === 'current_year' ? 'bg-green-600 text-black font-bold' : 'text-gray-500'}`}>Quarterly</button>
+              <button onClick={() => setMode('history')} className={`px-6 py-2 rounded-lg font-mono text-[10px] uppercase ${mode === 'history' ? 'bg-green-600 text-black font-bold' : 'text-gray-500'}`}>All_Time</button>
+           </div>
+        </div>
+
         {loading ? (
-          /* লোডিং স্টেট - যা লেআউট ঠিক রাখবে */
-          <div className="flex flex-col items-center justify-center py-40">
+          <div className="py-40 flex flex-col items-center">
             <Loader2 className="text-green-500 animate-spin mb-4" size={40} />
-            <p className="font-mono text-green-900 text-xs uppercase tracking-[0.5em]">Syncing_Global_Hunters...</p>
-          </div>
-        ) : error ? (
-          /* এরর স্টেট */
-          <div className="py-40 text-center flex flex-col items-center gap-4">
-             <AlertCircle className="text-red-500/50" size={48} />
-             <p className="text-red-500 font-mono text-xs uppercase tracking-widest">{error}</p>
-             <button onClick={() => window.location.reload()} className="px-6 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] text-gray-400 uppercase hover:text-green-500 transition-all">Retry_Connection</button>
+            <p className="font-mono text-green-900 text-xs uppercase tracking-[0.5em]">Establishing_Secure_Link...</p>
           </div>
         ) : (
           <>
-            {/* হেডার */}
-            <div className="flex flex-col items-center text-center mb-16 relative">
-              <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="flex items-center gap-2 text-green-500 font-mono text-[10px] mb-4 uppercase tracking-[0.4em]">
-                <Trophy size={14} /> [ GLOBAL_HALL_OF_FAME ]
-              </motion.div>
-              <h2 className="text-5xl lg:text-8xl font-black uppercase tracking-tighter leading-none text-white">
-                TOP <span className="text-green-500 italic">RESEARCHERS</span>
-              </h2>
-            </div>
-
-            {/* টপ ৩ রিসার্চার (Podium) */}
+            {/* Podium (Top 3) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-end">
               {leaders.slice(0, 3).map((leader, index) => (
-                <motion.div
-                  key={leader.rank}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`relative p-8 rounded-[2.5rem] border transition-all duration-500 ${
-                    index === 0 ? 'bg-zinc-900/20 border-green-500/40 shadow-2xl scale-105 z-10' : 'bg-zinc-950/40 border-white/5'
-                  }`}
-                >
-                  <span className={`text-[9px] font-black uppercase tracking-[0.3em] mb-6 block ${index === 0 ? 'text-yellow-500' : 'text-gray-600'}`}>
-                    {index === 0 ? 'RANK_01' : index === 1 ? 'RANK_02' : 'RANK_03'}
-                  </span>
-                  
-                  <div className="relative mb-6 mx-auto w-24 h-24">
-                     <div className={`w-full h-full rounded-full border-2 p-1 overflow-hidden ${index === 0 ? 'border-yellow-500' : 'border-zinc-800'}`}>
-                        <div className="w-full h-full rounded-full overflow-hidden bg-zinc-900 flex items-center justify-center">
-                           {leader.avatar ? <img src={leader.avatar} className="w-full h-full object-cover" alt={leader.username} /> : <User size={40} className="text-gray-700" />}
-                        </div>
-                     </div>
+                <div key={leader.username} className={`relative p-8 rounded-[2.5rem] border ${index === 0 ? 'bg-zinc-900/20 border-green-500/40 scale-105 z-10' : 'bg-zinc-950/40 border-white/5'}`}>
+                  <span className="text-[9px] font-black text-gray-600 uppercase mb-4 block">RANK_0{index + 1}</span>
+                  <div className="w-20 h-20 mx-auto mb-4 rounded-full border border-zinc-800 p-1">
+                    {leader.avatar ? <img src={leader.avatar} className="w-full h-full object-cover rounded-full" /> : <User className="mx-auto mt-4 text-gray-700" />}
                   </div>
-
-                  <div className="flex items-center justify-center gap-2 mb-3">
-                     <img src={getFlagURL(leader.country)} alt="flag" className="w-4 h-3 object-cover rounded-sm grayscale group-hover:grayscale-0 transition-all" />
-                     <span className="text-gray-500 text-[9px] font-bold uppercase tracking-widest">{getCountryName(leader.country)}</span>
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                     <img src={getFlagURL(leader.country)} className="w-4 h-2.5 rounded-sm" />
+                     <span className="text-gray-400 text-[10px] font-bold uppercase">@{leader.username}</span>
                   </div>
-
-                  <h3 className="text-white font-bold text-lg mb-1">@{leader.username}</h3>
-                  <p className="text-green-500 font-black text-3xl tracking-tighter">{leader.points} <span className="text-[10px] text-green-900 uppercase">pts</span></p>
-                </motion.div>
+                  <p className="text-green-500 font-black text-3xl text-center">{leader.points} PTS</p>
+                </div>
               ))}
             </div>
 
-            {/* বাকি লিডারবোর্ড লিস্ট */}
-            <div className="bg-zinc-950/30 border border-white/5 rounded-[2.5rem] overflow-hidden backdrop-blur-md">
-               <div className="p-6 md:p-8 space-y-3">
+            {/* List */}
+            <div className="bg-zinc-950/30 border border-white/5 rounded-[2rem] overflow-hidden">
+               <div className="p-4 space-y-2">
                   {leaders.map((leader) => (
-                    <div key={leader.rank} className="flex items-center justify-between p-4 md:px-8 bg-black/40 border border-white/5 rounded-2xl hover:border-green-500/20 transition-all group">
-                      <div className="flex items-center gap-6">
-                        <span className="text-zinc-800 font-mono text-xs w-6 italic">#{leader.rank < 10 ? `0${leader.rank}` : leader.rank}</span>
-                        <div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center bg-zinc-900 border border-white/5">
-                           {leader.avatar ? <img src={leader.avatar} className="w-full h-full object-cover" alt={leader.username} /> : <User size={18} className="text-gray-700" />}
-                        </div>
-                        <span className="text-gray-300 font-bold text-sm md:text-base group-hover:text-green-500 transition-colors">@{leader.username}</span>
+                    <div key={leader.username} className="flex items-center justify-between p-4 bg-black/40 border border-white/5 rounded-xl hover:border-green-500/20 transition-all group">
+                      <div className="flex items-center gap-4">
+                        <span className="text-zinc-800 font-mono text-xs w-6 italic">#{leader.rank}</span>
+                        <span className="text-gray-300 font-bold uppercase text-sm">@{leader.username}</span>
                       </div>
-                      
-                      <div className="flex items-center gap-3">
-                         <img src={getFlagURL(leader.country)} alt="flag" className="w-4 h-2.5 object-cover rounded-sm opacity-50" />
-                         <div className="text-right text-green-500 font-black text-sm md:text-lg tabular-nums">{leader.points} PTS</div>
+                      <div className="flex items-center gap-6">
+                        <div className="flex items-center gap-2">
+                           <img src={getFlagURL(leader.country)} className="w-4 h-2.5 rounded-sm opacity-50" />
+                           {/* এখান থেকেই এরর আসছিল */}
+                           <span className="hidden sm:block text-[10px] text-gray-600 font-mono">{getCountryName(leader.country)}</span>
+                        </div>
+                        <span className="text-green-500 font-black">{leader.points} PTS</span>
                       </div>
                     </div>
                   ))}
