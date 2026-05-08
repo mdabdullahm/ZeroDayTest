@@ -366,7 +366,7 @@ const Leaderboard = () => {
            style={{ backgroundImage: 'linear-gradient(#10b981 1px, transparent 1px), linear-gradient(90deg, #10b981 1px, transparent 1px)', backgroundSize: '45px 45px' }}>
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-20 relative z-10 w-full">
+      <div className="max-w-full mx-auto px-6 lg:px-20 relative z-10 w-full">
         
         {/* --- HEADER --- */}
         <div className="flex flex-col items-center text-center mb-16 relative">
