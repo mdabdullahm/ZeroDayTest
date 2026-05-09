@@ -57,7 +57,7 @@ const CookieBanner = () => {
               {/* Action Buttons */}
               <div className="flex items-center gap-3 w-full md:w-auto">
                 <Link 
-                  href="/cookies-policy" // তোমার কুকি পলিসি পেজ লিঙ্ক
+                  href="#specs" // তোমার কুকি পলিসি পেজ লিঙ্ক
                   className="flex-1 md:flex-none text-center px-5 py-2.5 text-[10px] font-mono text-gray-500 hover:text-green-500 transition-colors uppercase"
                 >
                   View_Specs
