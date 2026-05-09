@@ -25,7 +25,7 @@ const cookieTypes = [
 
 const CookiesPolicy = () => {
   return (
-    <section id="specs-section"  className="relative bg-black py-10 lg:py-20 overflow-hidden border-t border-green-500/5 mt-[-1px]">
+    <section id="cookies-specs" className="relative bg-black py-10 lg:py-20 overflow-hidden border-t border-green-500/5 mt-[-1px]">
       
       {/* Background Matrix Grid */}
       <div className="absolute inset-0 z-0 opacity-5 pointer-events-none" 
