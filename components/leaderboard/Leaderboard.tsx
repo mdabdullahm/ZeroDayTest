@@ -479,7 +479,6 @@ const Leaderboard = () => {
                           <span className="hidden sm:block text-[9px] font-mono text-gray-500 uppercase tracking-widest">{getCountryName(leader.country)}</span>
                         </div>
                         {/* pts */}
-
                         <div className="text-right min-w-[80px]">
                           <span className="text-green-500 font-black text-lg md:text-xl tabular-nums tracking-tighter">{leader.points}</span>
                           <span className="text-[8px] text-green-900 font-black ml-1 uppercase">pts</span>
