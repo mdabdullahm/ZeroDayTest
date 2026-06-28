@@ -206,25 +206,16 @@
 
 
 
-
-
-
-
-
 "use client";
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Calendar, Clock, ArrowRight, BookOpen, 
-  Terminal, AlertCircle, Loader2
-} from 'lucide-react';
+import { Calendar, Clock, ArrowRight, BookOpen, Terminal, AlertCircle, Loader2 } from 'lucide-react';
 import Link from 'next/link';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
-// ডক্স অনুযায়ী টাইপ
-export interface LandingBlogItem {
+export interface IByteCapsuleBlog {
   id: string;
   title: string;
   slug: string;
@@ -234,10 +225,10 @@ export interface LandingBlogItem {
   createdAt: string;
 }
 
-const BASE_URL = ""; // আপনার ডোমেইন ইউআরএল এখানে দিন
+const BASE_URL = ""; // আপনার ডোমেইন অনুযায়ী পরিবর্তন করুন
 
 export default function BlogListPage() {
-  const [blogs, setBlogs] = useState<LandingBlogItem[]>([]);
+  const [blogs, setBlogs] = useState<IByteCapsuleBlog[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -248,9 +239,7 @@ export default function BlogListPage() {
         const res = await fetch(`${BASE_URL}/api/public/blogs?page=1&limit=9`, {
           cache: 'no-store'
         });
-        
-        if (!res.ok) throw new Error("Failed to connect to Byte Capsule Intelligence Feed.");
-        
+        if (!res.ok) throw new Error("Failed to connect to Intelligence Feed.");
         const data = await res.json();
         setBlogs(data.posts || []);
       } catch (err) {
@@ -264,35 +253,37 @@ export default function BlogListPage() {
   }, []);
 
   if (error) return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-6">
-      <div className="text-center space-y-4 p-10 border border-red-500/20 bg-red-500/5 rounded-[3rem] backdrop-blur-xl max-w-lg">
-        <AlertCircle className="text-red-500 mx-auto" size={48} />
+    <div className="min-h-screen bg-black flex items-center justify-center p-6 text-center">
+      <div className="p-10 border border-red-500/20 bg-red-500/5 rounded-[3rem] backdrop-blur-xl max-w-lg">
+        <AlertCircle className="text-red-500 mx-auto mb-4" size={48} />
         <h2 className="text-white font-bold uppercase tracking-tighter text-xl">System_Link_Failure</h2>
-        <p className="text-red-400 font-mono uppercase tracking-widest text-[10px] leading-relaxed">{error}</p>
-        <button onClick={() => window.location.reload()} className="mt-4 px-8 py-3 bg-red-500 text-black font-black rounded-full text-[10px] uppercase hover:bg-white transition-colors">
-          Re-establish_Link
-        </button>
+        <p className="text-red-400 font-mono text-[10px] uppercase mt-2 italic">{error}</p>
+        <button onClick={() => window.location.reload()} className="mt-6 px-8 py-3 bg-red-500 text-black font-black rounded-full text-[10px] uppercase">Re-establish_Link</button>
       </div>
     </div>
   );
 
   return (
     <div className="min-h-screen bg-black text-gray-300 font-sans selection:bg-green-500 selection:text-black pt-32 pb-20 overflow-x-hidden">
+      {/* Background Matrix Decor */}
+      <div className="fixed inset-0 z-0 opacity-10 pointer-events-none" 
+           style={{ backgroundImage: 'linear-gradient(#10b981 1px, transparent 1px), linear-gradient(90deg, #10b981 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
+      </div>
+
       <div className="max-w-full mx-auto px-6 lg:px-20 relative z-10">
-        
-        <div className="mb-20 space-y-4 relative">
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="flex items-center gap-2 text-green-500 font-mono text-[10px] tracking-[0.4em] uppercase">
-                <Terminal size={14} /> Intelligence_Feed_v1.0
-            </motion.div>
-            <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-6xl md:text-8xl font-black text-white uppercase tracking-tighter italic leading-[0.9]">
+        <div className="mb-20 space-y-4">
+            <div className="flex items-center gap-2 text-green-500 font-mono text-[10px] tracking-[0.4em] uppercase">
+                <Terminal size={14} /> Intelligence_Feed_v1.2
+            </div>
+            <h1 className="text-6xl md:text-8xl font-black text-white uppercase tracking-tighter italic leading-[0.9]">
                 OUR <span className="text-green-500">PROTOCOL</span> LOGS
-            </motion.h1>
+            </h1>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {loading ? (
             Array(6).fill(0).map((_, i) => (
-              <div key={i} className="h-[450px] rounded-[3rem] bg-white/5 border border-white/10 animate-pulse relative" />
+              <div key={i} className="h-[450px] rounded-[3rem] bg-white/5 border border-white/10 animate-pulse"></div>
             ))
           ) : (
             blogs.map((post, index) => (
@@ -301,42 +292,40 @@ export default function BlogListPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="group relative bg-zinc-950/50 border border-white/5 rounded-[3rem] overflow-hidden hover:border-green-500/40 transition-all duration-500"
+                className="group relative bg-zinc-950/50 border border-white/5 rounded-[3rem] overflow-hidden hover:border-green-500/40 transition-all backdrop-blur-sm"
               >
                 <div className="aspect-[16/11] overflow-hidden relative">
                    {post.coverImage ? (
                      <img src={post.coverImage} alt={post.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100" />
                    ) : (
-                     <div className="w-full h-full bg-zinc-900 flex items-center justify-center">
-                        <BookOpen size={48} className="text-zinc-800" />
-                     </div>
+                     <div className="w-full h-full bg-zinc-900 flex items-center justify-center"><BookOpen size={48} className="text-zinc-800" /></div>
                    )}
+                   <div className="absolute top-6 left-6">
+                      <div className="px-4 py-1.5 bg-black/80 backdrop-blur-xl border border-white/10 rounded-full flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-[9px] font-mono text-white uppercase tracking-widest">Security_Report</span>
+                      </div>
+                   </div>
                 </div>
 
                 <div className="p-10 space-y-5">
-                  <div className="flex items-center gap-5 text-[10px] font-mono text-gray-500 uppercase tracking-widest">
-                    <span className="flex items-center gap-2"><Calendar size={12} className="text-green-900" /> {new Date(post.publishedAt || post.createdAt).toLocaleDateString()}</span>
+                  <div className="flex items-center gap-5 text-[10px] font-mono text-gray-500 uppercase">
+                    <span className="flex items-center gap-2"><Calendar size={12} /> {new Date(post.publishedAt || post.createdAt).toLocaleDateString()}</span>
+                    <span className="flex items-center gap-2"><Clock size={12} /> 5_MIN_READ</span>
                   </div>
-                  
-                  <h3 className="text-2xl font-bold text-white leading-tight group-hover:text-green-400 transition-colors uppercase tracking-tighter italic">
-                    {post.title}
-                  </h3>
+                  <h3 className="text-2xl font-bold text-white leading-tight group-hover:text-green-400 transition-colors uppercase tracking-tighter italic">{post.title}</h3>
                   
                   {/* Markdown Excerpt */}
-                  <div className="text-gray-500 text-[11px] leading-relaxed line-clamp-3 font-mono uppercase opacity-80 prose prose-invert max-w-none">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                        {post.excerpt || "No summary available for this encrypted protocol log."}
-                    </ReactMarkdown>
+                  <div className="text-gray-500 text-[11px] leading-relaxed line-clamp-3 font-mono uppercase opacity-80 prose-sm prose-invert">
+                     <ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml>
+                        {post.excerpt || ""}
+                     </ReactMarkdown>
                   </div>
 
-                  <div className="pt-4">
-                    <Link href={`/blog/${post.slug}`} className="inline-flex items-center gap-3 text-[10px] font-black text-green-500 uppercase tracking-[0.2em] group/btn">
-                      <span>DECRYPT_LOG</span> 
-                      <div className="p-2 rounded-full border border-green-500/20 group-hover/btn:bg-green-500 group-hover/btn:text-black transition-all">
-                        <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
-                      </div>
-                    </Link>
-                  </div>
+                  <Link href={`/blog/${post.slug}`} className="pt-4 inline-flex items-center gap-3 text-[10px] font-black text-green-500 uppercase tracking-[0.2em] group/btn">
+                    <span>DECRYPT_LOG</span> 
+                    <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
               </motion.article>
             ))

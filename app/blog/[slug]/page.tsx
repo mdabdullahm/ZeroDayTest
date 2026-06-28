@@ -102,35 +102,21 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Clock, Calendar, ShieldCheck, Share2, Printer, Loader2 } from 'lucide-react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const BASE_URL = "";
-
-// ডক্স অনুযায়ী টাইপ
-export type LandingBlogDetail = {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string | null;
-  content: string;
-  coverImage: string | null;
-  publishedAt: string;
-  createdAt: string;
-  updatedAt: string;
-};
 
 export default function BlogDetailPage() {
   const { slug } = useParams();
   const router = useRouter();
-  const [post, setPost] = useState<LandingBlogDetail | null>(null);
+  const [post, setPost] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchDetail = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/api/public/blogs/${slug}`);
-        if (!res.ok) throw new Error("Post not found");
+        const res = await fetch(`${BASE_URL}/api/public/blogs/${slug}`, { cache: 'no-store' });
         const data = await res.json();
         setPost(data.post);
       } catch (err) {
@@ -148,28 +134,25 @@ export default function BlogDetailPage() {
     </div>
   );
 
-  if (!post) return <div className="text-white text-center pt-40 uppercase font-mono tracking-widest">Protocol Not Found (404)</div>;
+  if (!post) return <div className="text-white text-center pt-40 uppercase font-mono">Protocol Not Found (404)</div>;
 
   return (
-    <div className="min-h-screen bg-black text-gray-300 pb-20 pt-10">
+    <div className="min-h-screen bg-black text-gray-300 pb-20 pt-10 selection:bg-green-500 selection:text-black">
       <div className="max-w-[1000px] mx-auto px-6">
         
-        <button 
-          onClick={() => router.back()}
-          className="flex items-center gap-2 text-[10px] font-mono text-green-500 mb-12 hover:text-white transition-colors"
-        >
-          <ArrowLeft size={14} /> RETURN_TO_FEED
+        <button onClick={() => router.back()} className="flex items-center gap-2 text-[10px] font-mono text-green-500 mb-12 hover:text-white transition-colors group">
+          <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> RETURN_TO_FEED
         </button>
 
         <article className="space-y-12">
             <header className="space-y-6">
-                <h1 className="text-4xl md:text-6xl font-black text-white uppercase italic tracking-tighter leading-none">
+                <h1 className="text-4xl md:text-7xl font-black text-white uppercase italic tracking-tighter leading-none">
                     {post.title}
                 </h1>
-                <div className="flex flex-wrap items-center gap-6 text-[10px] font-mono text-gray-500 uppercase border-y border-white/10 py-6">
+                <div className="flex flex-wrap items-center gap-6 text-[10px] font-mono text-gray-500 uppercase border-y border-white/5 py-6">
                     <span className="flex items-center gap-2 text-green-500"><ShieldCheck size={14} /> Authored_by_BC_Labs</span>
                     <span className="flex items-center gap-2"><Calendar size={14} /> {new Date(post.publishedAt).toLocaleDateString()}</span>
-                    <span className="flex items-center gap-2"><Clock size={14} /> Updated_{new Date(post.updatedAt).toLocaleTimeString()}</span>
+                    <span className="flex items-center gap-2"><Clock size={14} /> Updated_Live</span>
                 </div>
             </header>
 
@@ -179,20 +162,18 @@ export default function BlogDetailPage() {
                 </div>
             )}
 
-            {/* Markdown Rendering Area */}
+            {/* --- Markdown Content Renderer --- */}
             <div className="prose prose-invert prose-green max-w-none font-mono text-sm leading-relaxed
                 prose-headings:uppercase prose-headings:italic prose-headings:font-black prose-headings:tracking-tighter
-                prose-p:text-gray-400 prose-strong:text-green-500 prose-code:text-green-400 prose-code:bg-green-500/10 
-                prose-code:px-2 prose-code:py-0.5 prose-code:rounded prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-white/5">
-                
-               <ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml={true}>
-                 {post.content}
+                prose-p:text-gray-400 prose-strong:text-green-500 prose-code:text-green-400 prose-code:bg-green-500/10 prose-code:px-2 prose-code:rounded
+                prose-li:text-gray-400 prose-table:border prose-table:border-white/10">
+               <ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml>
+                  {post.content || ""}
                </ReactMarkdown>
-
             </div>
 
             <footer className="pt-20 border-t border-white/5 flex justify-between items-center">
-                <div className="text-[9px] font-mono text-gray-600 uppercase">
+                <div className="text-[9px] font-mono text-gray-600 uppercase tracking-widest">
                     Byte_Capsule_ID: {post.id}
                 </div>
                 <div className="flex gap-4">
