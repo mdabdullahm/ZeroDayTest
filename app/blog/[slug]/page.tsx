@@ -113,6 +113,26 @@ export default function BlogDetailPage() {
   const [post, setPost] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
+  const handleShare = async () => {
+    const shareData = {
+      title: post?.title,
+      text: post?.excerpt || "Byte Capsule Intelligence Feed",
+      url: typeof window !== 'undefined' ? window.location.href : '',
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.log("Sharing cancelled or failed", err);
+      }
+    } else {
+      // Fallback for browsers that don't support Web Share API
+      navigator.clipboard.writeText(window.location.href);
+      alert("Link copied to clipboard!");
+    }
+  };
+
   useEffect(() => {
     const fetchDetail = async () => {
       try {
@@ -144,7 +164,7 @@ export default function BlogDetailPage() {
 
   return (
     <div className="min-h-screen bg-black text-gray-300 pb-20 pt-10 selection:bg-green-500 selection:text-black">
-      <div className="max-w-full mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         
         {/* Back Button */}
         <motion.button 
@@ -224,6 +244,7 @@ export default function BlogDetailPage() {
                 </div>
                 <div className="flex gap-4">
                     <button 
+                        onClick={handleShare}
                         title="Share Protocol"
                         className="p-4 bg-white/5 rounded-full hover:text-green-500 hover:bg-white/10 transition-all border border-white/5"
                     >
